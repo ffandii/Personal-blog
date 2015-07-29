@@ -1,8 +1,8 @@
----
+﻿---
 layout: post
 title: "Hello World"
 description: ""
-category: 入门学习
+category: lessons
 tags: []
 ---
 {% include JB/setup %}
