@@ -1,6 +1,7 @@
-# Jekyll-Bootstrap
+# Outline
 
-The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
+Jekyll provides a good platform for us to build a personal blog on github, if you want to get some information about it,
+please see: <http://jekyllrb.com>. 
 
 ## Usage
 
