@@ -23,11 +23,12 @@ body {
     height: 30px;
     background-color: #5bc0de;
     text-align: center;
-    margin-top: 12px;
+/*    margin-top: 12px;  这里不要随便添加*/
     font-size: 15px;
     vertical-align: middle;
     padding-top: 5px;
     padding-bottom: 5px;
+    color: #b0e1ef;
 }
 
 #footer div.container {
