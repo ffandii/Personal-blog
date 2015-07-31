@@ -111,7 +111,7 @@
 							</span>{{ category | last | size }}</span>
 							<ul class="arc-list">
 							{% for post in category.last %}
-								<li><a href="{{ post.url }}">{{ post.title }}</a>{{ post.date | date:"%Y/%m/%d"}}</li>
+								<li><a href="{{site.url}}{{ post.url }}">{{ post.title }}</a>{{ post.date | date:"%Y/%m/%d"}}</li>
 							{% endfor %}
 							</ul>
 						{% endfor %}
