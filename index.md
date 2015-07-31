@@ -10,7 +10,9 @@ tagline:
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
-	<div>{{post.tags}}</div>
+	{% for item in post.tags %}
+    <div>{{ item }}</div>
+    {% endfor %}
 	<div>{{post.description}}</div>
   {% endfor %}
 </ul>
