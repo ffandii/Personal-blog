@@ -12,7 +12,6 @@ tagline:
 			<a href="{{ post.url }}">{{ post.title }}</a>
 		</div>
 		<div class="tags">
-		标签
 		{% for item in post.tags %}
 		<span class="label label-primary">{{item}}</span>
 		{% endfor %}
