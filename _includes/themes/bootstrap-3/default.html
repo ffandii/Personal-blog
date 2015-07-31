@@ -106,8 +106,17 @@
                     </div>
 
                     <div class="blog-side-bar col-lg-2 col-md-3">
-
+						{% for category in site.categories %}
+							<h2>{{ category | first }}</h2>
+							</span>{{ category | last | size }}</span>
+							<ul class="arc-list">
+							{% for post in category.last %}
+								<li><a href="{{ post.url }}">{{ post.title }}</a>{{ post.date | date:"%Y/%m/%d"}}</li>
+							{% endfor %}
+							</ul>
+						{% endfor %}
                     </div>
+					
                     <div class="col-lg-2 col-md-1">
                     </div>
                 </div>
