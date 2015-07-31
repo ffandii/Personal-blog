@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Hello World"
-description: ""
+description: "It's a hello-world written by me, just learn how to organize a blog."
 category: lessons
-tags: []
+tags: [beginner,jekyll,bootstrap]
 ---
 {% include JB/setup %}
 
