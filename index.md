@@ -13,7 +13,7 @@ tagline:
 		</div>
 		{% for item in post.tags %}
 		<div class="tags">
-			<div class="tag-element">{{ item }}</div>
+			<span class="label label-primary">{{item}}</span>
 		</div>
 		{% endfor %}
 		<div class="post-description">{{post.description}}</div>
