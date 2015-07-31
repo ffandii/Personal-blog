@@ -11,11 +11,12 @@ tagline:
 		<div class="post-header">
 			<a href="{{ post.url }}">{{ post.title }}</a>
 		</div>
-		{% for item in post.tags %}
 		<div class="tags">
-			<span class="label label-primary">{{item}}</span>
-		</div>
+		标签
+		{% for item in post.tags %}
+		<span class="label label-primary">{{item}}</span>
 		{% endfor %}
+		</div>
 		<div class="post-description">{{post.description}}</div>
 	</div>
 	{% endfor %}
