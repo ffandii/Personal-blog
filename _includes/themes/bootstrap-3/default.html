@@ -106,18 +106,37 @@
                     </div>
 
                     <div class="blog-side-bar col-lg-3 col-md-3">
-						{% for category in site.categories %}
-                            <div class="per-category">
-								<div class="per-first">{{ category | first }}</div>
-								</span>{{ category | last | size }}</span>
-							</div>
-                            <ul class="arc-list">
-								{% for post in category.last %}
-									<li><a href="{{site.url}}{{ post.url }}">{{ post.title }}</a>{{ post.date | date:"%Y/%m/%d"}}</li>
-								{% endfor %}
-                            </ul>
-						{% endfor %}
-                    </div>
+					
+					<div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-2">
+
+                                </div>
+                                <div class="col-lg-10 col-md-10">
+                                    <div class="sidebar-outline">
+                                        <div class="header">分类</div>
+                                        <div class="tag-line"></div>
+                                        <div class="cell">
+										{% for category in site.categories %}
+                                                <div class="per-category">
+                                                    <div class="per-first">{{ category | first }}</div>
+                                                    <span>{{ category | last | size }}</span>
+                                                </div>
+                                            <div class="transparent"></div>
+                                            <div class="hid-ul">
+                                                <ul class="arc-list">
+												{% for post in category.last %}
+												<li><a href="{{site.url}}{{ post.url }}">{{ post.title }}</a></li>
+												{% endfor %}
+                                                </ul>
+										{% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
 					
                     <div class="col-lg-1 col-md-1">
                     </div>
