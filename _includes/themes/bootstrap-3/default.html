@@ -107,15 +107,13 @@
 
                     <div class="blog-side-bar col-lg-3 col-md-3">
 						{% for category in site.categories %}
-							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                {{ category | first }}
-							</a>
-                                </span>{{ category | last | size }}</span>
-                                <ul class="arc-list">
-									{% for post in category.last %}
+                            {{ category | first }}
+                            </span>{{ category | last | size }}</span>
+                            <ul class="arc-list">
+								{% for post in category.last %}
 									<li><a href="{{site.url}}{{ post.url }}">{{ post.title }}</a>{{ post.date | date:"%Y/%m/%d"}}</li>
-									{% endfor %}
-                                </ul>
+								{% endfor %}
+                            </ul>
 						{% endfor %}
                     </div>
 					
