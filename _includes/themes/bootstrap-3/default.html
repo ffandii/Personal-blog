@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-lg-10 col-md-10">
                                     <div class="sidebar-outline">
-                                        <div class="header">分类</div>
+                                        <div class="header">Category</div>
                                         <div class="tag-line"></div>
                                         <div class="cell">
 										{% for category in site.categories %}
@@ -123,7 +123,7 @@
                                                     <span>{{ category | last | size }}</span>
                                                 </div>
                                             <div class="transparent"></div>
-                                            <div class="hid-ul">
+                                            <div class="hid-ul hiden">
                                                 <ul class="arc-list">
 												{% for post in category.last %}
 							<li><a href="{{site.url}}{{ post.url }}">{{ post.title }}</a></li>
