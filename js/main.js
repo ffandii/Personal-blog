@@ -10,4 +10,7 @@ $(document).ready(function(){
     $('div.cell').on('mouseout', function() {
         $('div.hid-ul').hide();
     });
+
+    //blog-outline部分的分割线
+    $('div.blog-outline div.gap-line:nth-last-child(1)').remove();
 });
