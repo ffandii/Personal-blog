@@ -8,11 +8,11 @@ $(document).ready(function(){
     $('div.cell').on('click', function() {
         if($('div.hid-ul').hasClass('hiden')){
             $('div.hid-ul').removeClass('hiden');
-            $('div.hid-ul').show('slow');
+            $('div.hid-ul').show(300);
         }
         else {
             $('div.hid-ul').addClass('hiden');
-            $('div.hid-ul').hide('slow');
+            $('div.hid-ul').hide(300);
         }
     });
 
