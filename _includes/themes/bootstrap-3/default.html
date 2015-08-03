@@ -100,6 +100,17 @@
                     </div>
 
                     <div class="blog-order col-lg-6 col-md-6">
+						<div class="header-talk">
+                            <div class="header-saying">
+                                I leave no trace of wings in the air,
+                                but I am glad I have had my flight.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ——泰戈尔
+                            </div>
+                            <div class="header-introduction">
+                                今年就23了，家乡湖北仙桃，本科毕业于武汉科技大学，现居武汉，还是单身狗一只。不大善于表达，比较闷，
+                                喜欢乒乓球和足球，标准的萨迷和煤粉，内心还是很狂热的，嘿嘿。学习前端半年有余，
+                                在Jekyll-bootstrap框架下搭建了俺的空间，来记录生活中的点滴。
+                            </div>
+                        </div>
 						{{ content }}
                     </div>
                     <div class="col-lg-2 col-md-1">
@@ -109,20 +120,24 @@
                         <div class="sidebar-outline">
                                         <div class="header">Category</div>
                                         <div class="tag-line"></div>
+										{% for category in site.categories %}
                                         <div class="cell">
                                                 <div class="per-category">
-                                                    <div class="per-first">体育</div>
-                                                    <span class="sum">8</span>
+                                                    <div class="per-first">{{ category | first }}</div>
+                                                    <span class="sum">{{ category | last | size }}</span>
                                                 </div>
                                             <div class="transparent"></div>
                                             <div class="hid-ul hiden">
-                                                <ul class="arc-list">
-                                                    <li><a href="/lessons/2015/07/28/hello-world">Hello World</a></li>
-                                                    <li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
-                                                </ul>
+												<ul class="arc-list">
+													{% for post in category.last %}
+														<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+													{% endfor %}
+											    </ul>
                                             </div>
-                                        </div>
-                                    </div>
+                                       
+									   </div>
+										{% endfor %}
+								 </div>
                     </div>
                     <div class="col-lg-0 col-md-1"></div>
                 </div>
