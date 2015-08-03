@@ -105,41 +105,26 @@
                     <div class="col-lg-1 col-md-1">
                     </div>
 
-                    <div class="blog-side-bar col-lg-3 col-md-3">
-					
-					<div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-2">
-
-                                </div>
-                                <div class="col-lg-10 col-md-10">
-                                    <div class="sidebar-outline">
+                    <div class="blog-side-bar col-lg-2 col-md-3">
+                        <div class="sidebar-outline">
                                         <div class="header">Category</div>
                                         <div class="tag-line"></div>
                                         <div class="cell">
-										{% for category in site.categories %}
                                                 <div class="per-category">
-                                                    <div class="per-first">{{ category | first }}</div>
-                                                    <span class="sum">{{ category | last | size }}</span>
+                                                    <div class="per-first">体育</div>
+                                                    <span class="sum">8</span>
                                                 </div>
                                             <div class="transparent"></div>
                                             <div class="hid-ul hiden">
                                                 <ul class="arc-list">
-												{% for post in category.last %}
-							<li><a href="{{site.url}}{{ post.url }}">{{ post.title }}</a></li>
-												{% endfor %}
+                                                    <li><a href="/lessons/2015/07/28/hello-world">Hello World</a></li>
+                                                    <li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
                                                 </ul>
-										{% endfor %}
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-					
-                    <div class="col-lg-1 col-md-1">
                     </div>
+                    <div class="col-lg-2 col-md-1"></div>>
                 </div>
             </div>
         </div>
