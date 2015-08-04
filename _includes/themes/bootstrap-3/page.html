@@ -1,1 +1,167 @@
-{{ content }}
+    <title>个人博客</title>
+    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <meta name="author" content="{{ site.author.name }}">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+	<!-- Sticky Footer -->
+    <link href="css/bs-sticky-footer.css" rel="stylesheet">
+	
+	<!-- Bootstrap styles -->
+	<link href="css/main.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <!--<link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">-->
+
+    <!-- Modernizr -->
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <!-- Respond.js for IE 8 or less only -->
+        <!--[if (lt IE 9) & (!IEMobile)]>
+        <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+	  <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- Update these with your own images
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body> 
+    <div id="wrap">
+      <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <header role="banner">
+            <nav role="navigation" class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="index.html">
+                                    <img src="images/logo.png" alt="Home" width="116" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 right">
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="index.html" name="Blog" data-toggle="tooltip" data-placement="bottom" title="博客">  
+                                        <span class="icon fa fa-tencent-weibo"></span>
+                                    </a></li>
+                                    <li><a href="#" name="Gallery" data-toggle="tooltip" data-placement="bottom" title="相册">
+                                        <span class="icon fa fa-picture-o"></span>
+                                    </a></li>
+                                    <li><a href="#" name="About me" data-toggle="tooltip" data-placement="bottom" title="me">
+                                        <span class="icon fa fa-user"></span>
+                                    </a></li>
+                                    <li><a href="#" name="Demo online" data-toggle="tooltip" data-placement="bottom" title="Demo">
+                                        <span class="icon fa fa-play"></span>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+		<div class="page-contents">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1">
+                    </div>
+
+                    <div class="blog-order col-lg-6 col-md-6">
+						<div class="header-talk">
+                            <div class="header-saying">
+                                I leave no trace of wings in the air,
+                                but I am glad I have had my flight.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ——泰戈尔
+                            </div>
+                            <div class="header-introduction">
+                                今年就23了，家乡湖北仙桃，本科毕业于武汉科技大学，现居武汉，还是单身狗一只。不大善于表达，比较闷，
+                                喜欢乒乓球和足球，标准的萨迷和煤粉，内心还是很狂热的，嘿嘿。学习前端半年有余，
+                                在Jekyll-bootstrap框架下搭建了俺的空间，来记录生活中的点滴。
+                            </div>
+                        </div>
+						{{ content }}
+                    </div>
+                    <div class="col-lg-2 col-md-1">
+                    </div>
+
+                    <div class="blog-side-bar col-lg-3 col-md-3">
+                        <div class="sidebar-outline">
+                                        <div class="header">Category</div>
+                                        <div class="tag-line"></div>
+										{% for category in site.categories %}
+                                        <div class="cell">
+                                                <div class="per-category">
+                                                    <div class="per-first">{{ category | first }}</div>
+                                                    <span class="sum">{{ category | last | size }}</span>
+                                                </div>
+                                            <div class="transparent"></div>
+                                            <div class="hid-ul hiden">
+												<ul class="arc-list">
+													{% for post in category.last %}
+														<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+													{% endfor %}
+											    </ul>
+                                            </div>
+                                       
+									   </div>
+										{% endfor %}
+								 </div>
+                    </div>
+                    <div class="col-lg-0 col-md-1"></div>
+                </div>
+            </div>
+        </div>
+		
+
+    </div>
+
+    <div id="footer">
+            <div class="container">
+                <div class="footer-cell">
+                    <span class="icon fa fa-qq"></span>
+                    <a href="https://mail.qq.com/cgi-bin/loginpage">1262623665</a>
+                </div>
+                <div class="footer-cell">
+                    &copy; 2015 樊迪制作 前端小伙
+                </div>
+                <div class="footer-cell">
+                    <span class="icon fa fa-github"></span>
+                    <a href="https://github.com/ffandii">Github</a>
+                </div>
+            </div>
+    </div>
+  
+    {% include JB/analytics %}
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+  </body>
