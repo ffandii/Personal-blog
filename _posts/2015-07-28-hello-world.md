@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: post
 title: "Hello World"
 description: "It's a hello-world written by me, just learn how to organize a blog."
 category: lessons
