@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 category : lessons
 description: "A outline offered by Jekyll-Bootstrap, mainly talks about what is Jekyll, what does Jekyll do.Which is a start begginer for all of, sincerely suggest you to read about it carefully...  "
 tagline: ""
