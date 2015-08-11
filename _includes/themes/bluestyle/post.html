@@ -88,97 +88,65 @@
             </nav>
         </header>
 
-		<div class="page-contents">
+		<div class="post-contents">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-1 col-md-1">
+                    <div class="col-lg-2 col-md-2">
                     </div>
 
-                    <div class="blog-order col-lg-6 col-md-6">
-											
+                    <div class="blog-order col-lg-8 col-md-8">
 						<div class="page-header">
-  <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
-</div>
+							<h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
+						</div>
 
-<div class="row post-full">
-  <div class="col-xs-12">
-    <div class="date">
-      <span>{{ page.date | date_to_long_string }}</span>
-    </div>
-    <div class="content">
-      {{ content }}
-    </div>
+						<div class="row">
+							<div class="date">
+							<span>{{ page.date | date_to_long_string }}</span>
+							</div>
+							<div class="content">
+							  {{ content }}
+							</div>
+							  {% unless page.categories == empty %}
+								<ul class="tag_box inline">
+								  <li><i class="glyphicon glyphicon-open"></i></li>
+								  {% assign categories_list = page.categories %}
+								  {% include JB/categories_list %}
+								</ul>
+							  {% endunless %}  
 
-  {% unless page.categories == empty %}
-    <ul class="tag_box inline">
-      <li><i class="glyphicon glyphicon-open"></i></li>
-      {% assign categories_list = page.categories %}
-      {% include JB/categories_list %}
-    </ul>
-  {% endunless %}  
+							  {% unless page.tags == empty %}
+								<ul class="tag_box inline">
+								  <li><i class="glyphicon glyphicon-tags"></i></li>
+								  {% assign tags_list = page.tags %}
+								  {% include JB/tags_list %}
+								</ul>
+							  {% endunless %}  
+							  
+								<hr>
+								<ul class="pagination">
+								{% if page.previous %}
+								  <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo; Previous</a></li>
+								{% else %}
+								  <li class="prev disabled"><a>&larr; Previous</a></li>
+								{% endif %}
+								  <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
+								{% if page.next %}
+								  <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &raquo;</a></li>
+								{% else %}
+								  <li class="next disabled"><a>Next &rarr;</a>
+								{% endif %}
+								</ul>
+								<hr>
+								{% include JB/comments %}
 
-  {% unless page.tags == empty %}
-    <ul class="tag_box inline">
-      <li><i class="glyphicon glyphicon-tags"></i></li>
-      {% assign tags_list = page.tags %}
-      {% include JB/tags_list %}
-    </ul>
-  {% endunless %}  
-  
-    <hr>
-    <ul class="pagination">
-    {% if page.previous %}
-      <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo; Previous</a></li>
-    {% else %}
-      <li class="prev disabled"><a>&larr; Previous</a></li>
-    {% endif %}
-      <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
-    {% if page.next %}
-      <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &raquo;</a></li>
-    {% else %}
-      <li class="next disabled"><a>Next &rarr;</a>
-    {% endif %}
-    </ul>
-    <hr>
-    {% include JB/comments %}
-  </div>
-</div>
-
-						
-	
+						</div>
                     </div>
-                    <div class="col-lg-2 col-md-1">
-                    </div>
+					
+                    <div class="col-lg-2 col-md-2"></div>
 
-                    <div class="blog-side-bar col-lg-3 col-md-3">
-                        <div class="sidebar-outline">
-                                        <div class="header">Category</div>
-                                        <div class="tag-line"></div>
-										{% for category in site.categories %}
-                                        <div class="cell">
-                                                <div class="per-category">
-                                                    <div class="per-first">{{ category | first }}</div>
-                                                    <span class="sum">{{ category | last | size }}</span>
-                                                </div>
-                                            <div class="transparent"></div>
-                                            <div class="hid-ul hiden">
-												<ul class="arc-list">
-													{% for post in category.last %}
-														<li><a href="{{site.production_url}}/Personal-blog{{ post.url }}">{{ post.title }}</a></li>
-													{% endfor %}
-											    </ul>
-                                            </div>
-                                       
-									   </div>
-										{% endfor %}
-								 </div>
-                    </div>
-                    <div class="col-lg-0 col-md-1"></div>
                 </div>
             </div>
         </div>
-		
-
     </div>
 
     <div id="footer">
