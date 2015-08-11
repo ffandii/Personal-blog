@@ -3,10 +3,8 @@
 
 html,
 body {
-  font-family: "Arial","Microsoft YaHei","÷ÚÌו","ËÎÌו",sans-serif;
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
-    background: #fdfdfd url("https://d1wli5mq9yq9mw.cloudfront.net/static/images/bg_main.gif") repeat fixed 0 0;
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 
 /* Wrapper for page content to push down footer */
