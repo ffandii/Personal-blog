@@ -11,8 +11,12 @@
     <link href="../../../../../css/bs-sticky-footer.css" rel="stylesheet">
 	
 	<!-- Bootstrap styles -->
-	<link href="../../../../../css/main.css" rel="stylesheet">
+	<link href="../../../../../css/post.css" rel="stylesheet">
     
+	<!-- code custome -->
+	<link rel="stylesheet" href="../../../../../css/codeStyles/default.css">
+	<script src="../../../../../js/highlight.pack.js"></script>
+	
     <!-- Custom styles -->
     <!--<link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">-->
 
@@ -94,12 +98,12 @@
                     <div class="col-lg-3 col-md-3">
                     </div>
 
-                    <div class="blog-order col-lg-6 col-md-6">
-						<div class="page-header">
+                    <div class="post-content col-lg-6 col-md-6">
+						<div class="post-header">
 							<h1>{{ page.title }}</h1>
-							<div class="date">
-							<span>{{ page.date | date_to_long_string }}</span>
-							</div>
+							<span>{{ post.date | date:"%m %d, %Y"}}</span>
+							<div class="gap-line"></div>
+							<div class="gap-line"></div>
 						</div>
 
 						<div class="row">
