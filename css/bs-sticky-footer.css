@@ -29,6 +29,12 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     color: #b0e1ef;
+
+    -webkit-box-shadow: 0 -1px 4px #6c6b65;
+    -ms-box-shadow: 0 -1px 4px #6c6b65;
+    -o-box-shadow: 0 -1px 4px #6c6b65;
+    -moz-webkit-shadow: 0 -1px 4px #6c6b65;
+    box-shadow: 0 -1px 4px #6c6b65;
 }
 
 #footer div.container {
