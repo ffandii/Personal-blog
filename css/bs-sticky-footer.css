@@ -21,7 +21,7 @@ body {
 /* Set the fixed height of the footer here */
 #footer {
     height: 30px;
-    background-color: #5bc0de;
+    background-color: #8bc4bc;/*#5bc0de;*/
     text-align: center;
 /*    margin-top: 12px;  这里不要随便添加*/
     font-size: 15px;
