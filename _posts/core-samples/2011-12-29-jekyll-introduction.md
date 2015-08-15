@@ -18,7 +18,7 @@ tags : [intro, beginner, jekyll, tutorial]
 <div class="p-section">
 	<h3>Examples</h3>
 	<p>
-		This website is created with Jekyll. [Other Jekyll websites](https://github.com/mojombo/jekyll/wiki/Sites).
+		This website is created with Jekyll.
 	</p>
 </div>
 
