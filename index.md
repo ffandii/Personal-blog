@@ -12,6 +12,7 @@ tagline:
 			<div class="array-left">
 				<div class="post-header">
 				<a href="{{ post.url }}">{{ post.title }}</a>
+				<span class="icon fa fa-book"></span>
 				</div>
 				<div class="tags">
 				{% for item in post.tags %}
