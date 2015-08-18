@@ -1,5 +1,7 @@
 $('div.hid-ul').hide();
 
+$('div.post-header').find('span').hide();
+
 //blog-outline部分的分割线
 $('div.blog-outline div.gap-line:nth-last-child(1)').remove();
 
@@ -37,5 +39,16 @@ $(document).ready(function(){
         }
 
     });
-//-------------------------------------------------------------
+//--------------------标题书签的提示显示和隐藏----------------------------
+    $('div.post-header a').on('mouseenter mouseleave',function(event){
+        if($(window).width()>=400){
+            if(event.type=='mouseenter'){
+                $(this).next('span').stop().fadeIn('slow');
+
+            }
+            else {
+                $(this).next('span').stop().fadeOut('slow');
+            }
+        }
+    });
 });
