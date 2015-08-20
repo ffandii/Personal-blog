@@ -35,4 +35,25 @@ $(document).ready(function() {
             }
         }
     });
+
+    /*****************×óÓÒ·­Ò³°´Å¥µÄÊæ»ºÐ§¹û******************/
+    $('div.post-part2 a').on('mouseenter mouseleave',function(event) {
+        var $liParent=$(this).parent('li');
+        if(!($liParent.hasClass('disabled'))){
+            if(event.type=='mouseenter'){
+                $(this).animate({
+                    color: "#dcffd4"
+                },{
+                    duration: "fast"
+                });
+            }
+            else {
+                $(this).animate({
+                    color: "#6f9953"
+                },{
+                    duration: "fast"
+                });
+            }
+        }
+    });
 });
