@@ -1,4 +1,4 @@
-$('div.hid-ul').hide();
+//$('div.hid-ul').hide();
 
 //$('div.post-header').find('span').hide();
 
