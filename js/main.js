@@ -73,7 +73,6 @@ $(document).ready(function(){
 //------------------------------隐藏以及点击时添加评论区----------------------//
     $('#show_disqus').click(function(){
         var $comment=$(this).parent('div.comment');
-        $(this).fadeOut('slow');
         var html='';
         html+='<div id="disqus_thread"></div>';
         html+='<script type="text/javascript">';
@@ -85,6 +84,9 @@ $(document).ready(function(){
         html+=' Please enable JavaScript to view the';
         html+='<a href="http://disqus.com/?ref_noscript">';
         html+='comments powered by Disqus.</a></noscript>';
-        $comment.html(html);
+        $(this).fadeOut('slow');
+        setTimeout(function(){
+            $comment.html(html);
+        },300);
     });
 });
