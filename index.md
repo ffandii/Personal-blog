@@ -25,6 +25,5 @@ tagline:
 		</div>
 		<div class="post-description">{{post.description}}</div>
 	</div>
-	<div class="gap-line"></div>
 	{% endfor %}
 </div>

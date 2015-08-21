@@ -2,11 +2,17 @@ $('div.hid-ul').hide();
 
 //$('div.post-header').find('span').hide();
 
-//blog-outline部分的分割线
-$('div.blog-outline div.gap-line:nth-last-child(1)').remove();
-
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); //导航栏的提示框
+    var delay={ "show": 800, "hide": 800 };
+    $('[data-toggle="tooltip"]').tooltip(delay); //导航栏的提示框
+
+//------------------删除最后一行的虚线---------------------//
+    $('div.blog-outline div.post-outline').each(function(){
+        $('<div class="gap-line"></div>').insertAfter(this);
+    });
+
+    //blog-outline部分的分割线
+    $('div.blog-outline div.gap-line:nth-last-child(1)').remove();
 
 //------------------侧边栏的展开和折叠--------------------------
     $('div.cell').on('click', function() {
