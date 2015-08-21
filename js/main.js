@@ -1,7 +1,5 @@
 //$('div.hid-ul').hide();
 
-//$('div.post-header').find('span').hide();
-
 $(document).ready(function(){
     var delay={ "show": 800, "hide": 800 };
     $('[data-toggle="tooltip"]').tooltip(delay); //导航栏的提示框
@@ -16,13 +14,13 @@ $(document).ready(function(){
 
 //------------------侧边栏的展开和折叠--------------------------
     $('div.cell').on('click', function() {
-        if($(this).children().hasClass('hiden')){
-            $(this).children().removeClass('hiden');
-            $(this).find('div.hid-ul').show(300);
+        if($(this).next('div.hid-ul').hasClass('hiden')){
+            $(this).next('div.hid-ul').removeClass('hiden');
+            $(this).next('div.hid-ul').show(300);
         }
         else {
-            $(this).find('div.hid-ul').addClass('hiden');
-            $(this).find('div.hid-ul').hide(300);
+            $(this).next('div.hid-ul').addClass('hiden');
+            $(this).next('div.hid-ul').hide(300);
         }
     });
 
