@@ -1,6 +1,6 @@
 $('div.hid-ul').hide();
 
-$('div.post-header').find('span').hide();
+//$('div.post-header').find('span').hide();
 
 //blog-outline部分的分割线
 $('div.blog-outline div.gap-line:nth-last-child(1)').remove();
@@ -40,6 +40,10 @@ $(document).ready(function(){
 
     });
 //--------------------标题书签的提示显示和隐藏----------------------------
+    $('div.blog-outline div.post-outline div.post-header a').each(function(){
+        $('<span class="icon fa fa-book"></span>').insertAfter(this).hide();
+    });
+
     $('div.post-header a').on('mouseenter mouseleave',function(event){
         if($(window).width()>=400){
             if(event.type=='mouseenter'){
