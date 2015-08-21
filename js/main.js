@@ -51,4 +51,40 @@ $(document).ready(function(){
             }
         }
     });
+
+//----------------侧边栏书签在鼠标悬停及进入时的额颜色变化---------------------//
+    $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
+        if(event.type=='mouseenter'){
+            $(this).stop().animate({
+                backgroundColor: "#b1d8d8"
+            },{
+                duration: "fast"
+            });
+        }
+        else {
+            $(this).stop().animate({
+                backgroundColor: "#b6dede"
+            },{
+                duration: "fast"
+            });
+        }
+    });
+
+//------------------------------隐藏以及点击时添加评论区----------------------//
+    $('#show_disqus').click(function(){
+        var $comment=$(this).parent('div.comment');
+        $(this).fadeOut('slow');
+        var html='';
+        html+='<div id="disqus_thread"></div>';
+        html+='<script type="text/javascript">';
+        html+="var disqus_shortname = 'FCBmessi';";
+        html+="(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;";
+        html+="dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';";
+        html+="(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();";
+        html+=' </script><noscript>';
+        html+=' Please enable JavaScript to view the';
+        html+='<a href="http://disqus.com/?ref_noscript">';
+        html+='comments powered by Disqus.</a></noscript>';
+        $comment.html(html);
+    });
 });
