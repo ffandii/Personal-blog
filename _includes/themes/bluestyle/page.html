@@ -131,16 +131,16 @@
                                                     <div class="per-first">{{ category | first }}</div>
                                                     <span>{{ category | last | size }}</span>
                                                 </div>
-                                            <div class="transparent"></div>
-                                            <div class="hid-ul hiden">
+                                            <div class="transparent"></div>                           
+									   </div>
+									   
+									   <div class="hid-ul hiden">
 												<ul class="arc-list">
 													{% for post in category.last %}
 														<li><a href="{{site.production_url}}/Personal-blog{{ post.url }}">{{ post.title }}</a></li>
 													{% endfor %}
 											    </ul>
                                             </div>
-                                       
-									   </div>
 										{% endfor %}
 								 </div>
                     </div>
