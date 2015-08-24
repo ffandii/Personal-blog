@@ -128,7 +128,7 @@ JB :
   # where [HELPER] is the name of the helper you are overriding.
   
   # paginate fenye
-paginate: 1
+paginate: 2
 paginate_path: "page:num"
   
   
