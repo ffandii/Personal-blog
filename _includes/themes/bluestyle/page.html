@@ -5,25 +5,21 @@
     <!-- Enable responsive viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
 	<!-- Sticky Footer -->
-    <link href="css/bs-sticky-footer.css" rel="stylesheet">
-	
+	<link href="{{"css/bs-sticky-footer.css" | prepend: site.baseurl }}" rel="stylesheet">
+			
 	<!-- Bootstrap styles -->
 	<link href="css/main.css" rel="stylesheet">
-    
-    <!-- Custom styles -->
-    <!--<link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">-->
-
-    <!-- Modernizr -->
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <!-- Respond.js for IE 8 or less only -->
-        <!--[if (lt IE 9) & (!IEMobile)]>
-        <script src="js/vendor/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-	  <link rel="shortcut icon" href="images/favicon.ico">
+			
+	<!-- Modernizr -->
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+	<!-- Respond.js for IE 8 or less only -->
+	<!--[if (lt IE 9) & (!IEMobile)]>
+	<script src="js/vendor/respond.min.js"></script>
+	<![endif]-->
+			
+	<!-- Fav and touch icons -->
+	<link rel="shortcut icon" href="images/favicon.ico">  
     <!-- Update these with your own images
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
       <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -57,7 +53,7 @@
                                     <span class="icon-bar"></span>
                                 </button>
                                 <a class="navbar-brand" href="index.html">
-                                    <img src="images/logo.png" alt="Home" width="116" />
+									<img src="images/logo.png" alt="Home" width="116" />
                                 </a>
                             </div>
                         </div>
@@ -111,6 +107,25 @@
 						<div class="page-bottoms">
 							<div class="bottom-gap">
                             <span class="icon fa fa-scissors"></span>
+							</div>
+							<div class="fenye">
+								{% if paginator.total_pages > 1 %}  
+									{% if paginator.previous_page %}  
+										<a href="{{ paginator.previous_page_path }}">上一页</a>  
+									{% endif %} 
+
+									{% for page in (1..paginator.total_pages) %}  
+										{% if page == 1 %}  
+										<a href="/index.html">{{ page }}</a>  
+										{% else %}  
+										<a href="{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a>  
+										{% endif %}  
+									{% endfor %} 
+      
+									{% if paginator.next_page %}  
+										<a href="{{ paginator.next_page_path }}">下一页</a>  
+										{% endif %}  
+								{% endif %}  
 							</div>
 							<div class="comment">
 							<div id="show_disqus">显示评论</div>
