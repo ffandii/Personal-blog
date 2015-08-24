@@ -64,14 +64,14 @@ $(document).ready(function(){
     $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                backgroundColor: "#b1d8d8"
+                backgroundColor: "#92b27e"
             },{
                 duration: "fast"
             });
         }
         else {
             $(this).stop().animate({
-                backgroundColor: "#b6dede"
+                backgroundColor: "#9dbf88"
             },{
                 duration: "fast"
             });
