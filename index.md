@@ -6,7 +6,7 @@ tagline:
 {% include JB/setup %}
 
 <div class="blog-outline">
-	{% for post in site.posts %}
+	{% for post in paginator.posts %}
 	<div class="post-outline">
 		<div class="post-array">
 			<div class="array-left">
