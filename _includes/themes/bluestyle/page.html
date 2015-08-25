@@ -118,7 +118,7 @@
 										{% if page == 1 %}  
 									<a href="{{site.production_url}}/Personal-blog/index.html">{{ page }}</a>  
 										{% else %}  
-									<a href="{{site.production_url}}/Personal-blog{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a>  
+									<a href="{{site.production_url}}/Personal-blog/{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a>  
 										{% endif %}  
 									{% endfor %} 
       
