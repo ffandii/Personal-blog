@@ -45,7 +45,7 @@ tags: [Javascript,读书笔记]
 <div class="p-section">
 	<h3>闭包</h3>
 	<p>闭包是指有权访问另一个函数作用域中的变量的函数，创建闭包的常见方式就是在一个函数内部创建另一个函数。</p>
-<pre><code class="javascript">function createComparisonFunction(propertyName){
+<pre><code class="javascript">function createFunction(propertyName){
    return function(object1,object2){
       var value1=object1[propertyName];
 	  var value2=object2[propertyName];
@@ -58,7 +58,11 @@ tags: [Javascript,读书笔记]
 	  else return 0;
    }
 }
+
+var result=createFunction("name");
 </code></pre>
-	<p>一般情况下，函数执行完毕后，会销毁其中的局部变量。但如果我们调用上面的函数，内部函数会被返回，返回后的函数如果在其他地方被调用了,仍然可以访问到变量<code>propertyName</code>，之所以能够访问到这个变量是因为内部函数的作用域链中已经包含了<code>createComparisonFunction()</code>的作用域。要彻底搞清楚其中的细节，必须从理解函数被调用的时候都发生了什么入手。</p>
+	<p>一般情况下，函数执行完毕后，会销毁其中的局部变量。但如果我们调用上面的函数，内部函数会被返回，返回后的函数如果在其他地方被调用了,仍然可以访问到变量<code>propertyName</code>，之所以能够访问到这个变量是因为内部函数的作用域链中已经包含了<code>createFunction()</code>的作用域。要彻底搞清楚其中的细节，必须从理解函数被调用的时候都发生了什么入手。</p>
 	<p>回忆之前关于作用域链的概念，当某个函数被调用时会创建一个执行环境及相应的作用域链。然后，使用<code>arguments</code>和其他命名参数的值初始化函数的变量对象。在作用域链中，外部函数的变量对象始终处在第二位，外部函数的外部函数的变量对象处在第三位，...直到作为作用域链终点的全局变量对象。</p>
+	<div class="image"><img src="../../../../../images/post/javascript/scope1.png" width="626" height="254"/></div>
+	<p>后台的每个执行环境都有一个表示变量的对象——变量对象。全局环境的变量对象始终存在，而像<code>createFunction()</code>这样的局部环境的变量对象，则只在函数执行的过程中存在。在创建函数时，会预先创建一个包含全局变量对象的作用域链，这个作用域链保存在内部的<code>[[scope]]</code>属性中，当调用函数时，会为函数创建一个执行环境，然后通过复制<code>[[scope]]</code>属性中的对象构建起执行环境的作用域链。此后，又有一个变量对象被创建并推入执行环境作用域链的前端，上图中的这个变量对象则为<code>createFunction()</code>的变量对象。作用域本质上是一个指向变量对象的指针列表，它仅仅只是引用变量对象。</p>
 </div>
