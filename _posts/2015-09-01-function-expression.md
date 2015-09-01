@@ -14,14 +14,13 @@ tags: [Javascript,读书笔记]
    //函数体
 };
 </code></pre>	
-	<p>这种形式看起来就像是常规的变量赋值语句，即创建一个函数并将它赋值给变量<code>functionName</code>。这种情况下创建的函数叫做匿名函数，因为<code>function</code>关键字
-	后面没有标识符，匿名函数的name属性(<code>functionName.name</code>就是函数名)也是空字符串。
+	<p>这种形式看起来就像是常规的变量赋值语句，即创建一个函数并将它赋值给变量<code>functionName</code>。这种情况下创建的函数叫做匿名函数，因为<code>function</code>关键字后面没有标识符，匿名函数的name属性(<code>functionName.name</code>就是函数名)也是空字符串。
 	</p>
 </div>
 
 <div class="p-section">
 	<h3>使用函数实现递归</h3>
-	<p>采用松散耦合的方式实现经典的递归阶乘函数，下面是比较常见的一种方式。
+	<p>采用松散耦合的方式实现经典的递归阶乘函数，下面是比较常见的一种方式。</p>
 <pre><code class="javascript">function factorial(num){
    if(num<=1) return 1;
    else {
@@ -39,7 +38,8 @@ tags: [Javascript,读书笔记]
    }
 });
 </code></pre>	
-	<p>以上代码创建了一个名为<code>f()</code>的命名函数表达式，然后将它赋值给变量<code>factorial</code>。即便把函数赋值给了另一个变量，函数的名字<code>f</code>仍然有效，所以递归调用照样能正确完成。这种方式在严格模式和非严格模式下都行得通。</p>
+	<p>以上代码创建了一个名为<code>f()</code>的命名函数表达式，然后将它赋值给变量<code>factorial</code>。即便把函数赋值给了另一个变量，函数的名字<code>f</code>仍然有效，所以递归调用照样能正确完成。这种方式在严格模式和非严格模式下都行得通。
+	</p>
 </div>
 
 <div class="p-section">
@@ -59,4 +59,6 @@ tags: [Javascript,读书笔记]
    }
 }
 </code></pre>
+	<p>一般情况下，函数执行完毕后，会销毁其中的局部变量。但如果我们调用上面的函数，内部函数会被返回，返回后的函数如果在其他地方被调用了,仍然可以访问到变量<code>propertyName</code>，之所以能够访问到这个变量是因为内部函数的作用域链中已经包含了<code>createComparisonFunction()</code>的作用域。要彻底搞清楚其中的细节，必须从理解函数被调用的时候都发生了什么入手。</p>
+	<p>回忆之前关于作用域链的概念，当某个函数被调用时会创建一个执行环境及相应的作用域链。然后，使用<code>arguments</code>和其他命名参数的值初始化函数的变量对象。在作用域链中，外部函数的变量对象始终处在第二位，外部函数的外部函数的变量对象处在第三位，...直到作为作用域链终点的全局变量对象。</p>
 </div>
