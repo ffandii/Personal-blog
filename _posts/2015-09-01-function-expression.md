@@ -6,7 +6,57 @@ category: Javascript
 tags: [Javascript,读书笔记]
 ---
 {% include JB/setup %}
-	<div class="p-section">
-		<h3>理解函数表达式</h3>
-		<p>函数表达式是JavaScript中一个既强大又令人感到困惑的特性。定义函数的方式有两种，一种是使用函数声明，另一种就是函数表达式。函数声明的语法是这样的</p>
-	</div>
+
+<div class="p-section">
+	<h3>理解函数表达式</h3>
+	<p>函数表达式是JavaScript中一个既强大又令人感到困惑的特性。定义函数的方式有两种，一种是使用函数声明，另一种就是函数表达式。函数声明的语法是这样的，首先是<code>function</code>关键字，然后是函数的名字。关于函数声明，它的一个重要特征是函数声明提升，意思是在执行代码之前会先读取函数，这就意味着可以把函数声明放在调用它的语句之后。第二种创建函数的方式是使用函数表达式。函数表达式有几种不同的语法形式，以下为最常见的一种形式。</p>
+<pre><code class="javascript">var functionName=function(arg0,arg1,arg2){
+   //函数体
+};
+</code></pre>	
+	<p>这种形式看起来就像是常规的变量赋值语句，即创建一个函数并将它赋值给变量<code>functionName</code>。这种情况下创建的函数叫做匿名函数，因为<code>function</code>关键字
+	后面没有标识符，匿名函数的name属性(<code>functionName.name</code>就是函数名)也是空字符串。
+	</p>
+</div>
+
+<div class="p-section">
+	<h3>使用函数实现递归</h3>
+	<p>采用松散耦合的方式实现经典的递归阶乘函数，下面是比较常见的一种方式。
+<pre><code class="javascript">function factorial(num){
+   if(num<=1) return 1;
+   else {
+      return num*arguments.callee(num-1);
+   }
+}
+</code></pre>
+	<p><code>arguments.callee</code>是一个指向正在执行的函数的指针，因此可以用它来实现经典的递归调用，但在严格模式下，不能通过脚本访问这个指针，会导致错误。不过，可以使用函数命名表达式来达成相同的结果。</p>
+<pre><code class="javascript">var factorial=(function f(num){
+   if(num<=1){
+      return 1;
+   }
+   else {
+      return num*f(num-1);
+   }
+});
+</code></pre>	
+	<p>以上代码创建了一个名为<code>f()</code>的命名函数表达式，然后将它赋值给变量<code>factorial</code>。即便把函数赋值给了另一个变量，函数的名字<code>f</code>仍然有效，所以递归调用照样能正确完成。这种方式在严格模式和非严格模式下都行得通。</p>
+</div>
+
+<div class="p-section">
+	<h3>闭包</h3>
+	<p>闭包是指有权访问另一个函数作用域中的变量的函数，创建闭包的常见方式就是在一个函数内部创建另一个函数。</p>
+<pre><code class="javascript">function createComparisonFunction(propertyName){
+   return function(object1,object2){
+      var value1=object1[propertyName];
+	  var value2=object2[propertyName];
+	  if(value1<value2){
+	     return -1;
+	  }
+	  else if(value1>value2) {
+	     return 1;
+	  }
+	  else return 0;
+   }
+}
+</code></pre>
+</div>
