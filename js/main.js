@@ -52,10 +52,19 @@ $(document).ready(function(){
         if($(window).width()>=400){
             if(event.type=='mouseenter'){
                 $(this).next('span').stop().fadeIn('slow');
-
+                $(this).stop().animate({
+                    color: "#478da8"
+                },{
+                    duration: 300
+                });
             }
             else {
                 $(this).next('span').stop().fadeOut('slow');
+                $(this).stop().animate({
+                    color: "#59b0d1"
+                },{
+                    duration: 300
+                });
             }
         }
     });
@@ -96,5 +105,41 @@ $(document).ready(function(){
         setTimeout(function(){
             $comment.html(html);
         },300);
+    });
+
+//------------------------------评论区的颜色变化----------------------//
+    $('#show_disqus div.center').on('mouseenter mouseleave',function(event) {
+        if(event.type=='mouseenter'){
+            $(this).stop().animate({
+                color: "#8d975c"
+            },{
+                duration: 300
+            });
+        }
+        else {
+            $(this).stop().animate({
+                color: "#a8b46e"
+            },{
+                duration: 300
+            });
+        }
+    });
+
+//------------------------------分页区的颜色变化----------------------//
+    $('div.fenye div').on('mouseenter mouseleave',function(event) {
+        if(event.type=='mouseenter'){
+            $(this).stop().animate({
+                backgroundColor: "#9a8f67"
+            },{
+                duration: 300
+            });
+        }
+        else {
+            $(this).stop().animate({
+                backgroundColor: "#b8a7a2"
+            },{
+                duration: 300
+            });
+        }
     });
 });
