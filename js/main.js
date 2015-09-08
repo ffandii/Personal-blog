@@ -111,16 +111,16 @@ $(document).ready(function(){
     $('#show_disqus div.center').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                color: "#8d975c"
+                color: "#b49589"
             },{
-                duration: 300
+                duration: 400
             });
         }
         else {
             $(this).stop().animate({
-                color: "#a8b46e"
+                color: "#60acb4"
             },{
-                duration: 300
+                duration: 400
             });
         }
     });
@@ -129,16 +129,16 @@ $(document).ready(function(){
     $('div.fenye div').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                backgroundColor: "#9a8f67"
+                backgroundColor: "#b49589"
             },{
-                duration: 300
+                duration: 400
             });
         }
         else {
             $(this).stop().animate({
-                backgroundColor: "#b8a7a2"
+                backgroundColor: "#60acb4"
             },{
-                duration: 300
+                duration: 400
             });
         }
     });
