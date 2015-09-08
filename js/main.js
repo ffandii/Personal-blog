@@ -53,7 +53,7 @@ $(document).ready(function(){
             if(event.type=='mouseenter'){
                 $(this).next('span').stop().fadeIn('slow');
                 $(this).stop().animate({
-                    color: "#478da8"
+                    color: "#b47160"
                 },{
                     duration: 300
                 });
@@ -61,7 +61,7 @@ $(document).ready(function(){
             else {
                 $(this).next('span').stop().fadeOut('slow');
                 $(this).stop().animate({
-                    color: "#59b0d1"
+                    color: "#60acb4"
                 },{
                     duration: 300
                 });
@@ -111,7 +111,7 @@ $(document).ready(function(){
     $('#show_disqus div.center').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                color: "#b49589"
+                color: "#b47160"
             },{
                 duration: 400
             });
@@ -129,7 +129,7 @@ $(document).ready(function(){
     $('div.fenye div').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                backgroundColor: "#b49589"
+                backgroundColor: "#b47160"
             },{
                 duration: 400
             });
