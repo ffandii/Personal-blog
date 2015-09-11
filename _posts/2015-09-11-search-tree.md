@@ -2,7 +2,7 @@
 layout: post
 title: "二叉搜索树"
 description: "树是计算机科学中经常用到的一种数据结构。树是一种非线性的数据结构，以分层的方式存储数据。树被用来存储具有层级关系的数据，比如文件系统中的文件，有序列表等。"
-category: data structure 
+category: 数据结构与算法 
 tags: [数据结构,Javascript,读书笔记]
 ---
 {% include JB/setup %}
