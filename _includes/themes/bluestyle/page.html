@@ -108,15 +108,22 @@
 							<div class="bottom-gap">
 								<span class="icon fa fa-scissors"></span>
 							</div>
-							<div class="fenye">
+			
+								<div class="fenye">	
 								{% if paginator.total_pages > 1 %}  
 									{% if paginator.previous_page %}  
 									<div class="fenye-link"><a href="{{ paginator.previous_page_path }}">上一页</a></div>  
 									{% endif %} 
 
 									{% for page in (1..paginator.total_pages) %}  
-										{% if page == 1 %}  
-									<div class="fenye-a home"><a href="/index.html">{{ page }}</a></div> 
+										{% if page == paginator.page %}
+											{% if page == 1 %} 
+												<div class="fenye-a active home"><a href="/index.html">{{ page }}</a></div> 
+											{% else %}  
+												<div class="fenye-a active"><a href="{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div> 
+											{% endif %}  
+										{% else if page == 1 %}  
+									<div class="fenye-a"><a href="/index.html">{{ page }}</a></div> 
 										{% else %}  
 									<div class="fenye-a"><a href="{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div>  
 										{% endif %}  
@@ -125,6 +132,8 @@
 									{% if paginator.next_page %}  
 									<div class="fenye-link"><a href="{{ paginator.next_page_path }}">下一页</a></div>
 										{% endif %}  
+								{% else %} 
+									<div class="home"></div>
 								{% endif %}  
 							</div>
 							<div class="comment">
