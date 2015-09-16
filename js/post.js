@@ -124,11 +124,18 @@ $(document).ready(function() {
         var $image=$('div.post-contents img');
         if(pageWidth<baseWidth){
             $image.each(function(index){
+                var rate;
+                if(pageWidth>=768){
+                    rate=0;
+                }
+                else {
+                    rate=0.2;
+                }
                 var imageWidth=imageSize[index][0];
                 var imageHeight=imageSize[index][1];
                 var widthRate=pageWidth/baseWidth;
-                imageWidth*=widthRate;
-                imageHeight*=widthRate;
+                imageWidth*=(widthRate+rate);
+                imageHeight*=(widthRate+rate);
                 $(this).attr("width",Math.round(imageWidth).toString());
                 $(this).attr("height",Math.round(imageHeight).toString());
             });
