@@ -49,7 +49,7 @@ $(document).ready(function(){
     });
 
     $('div.post-header a').on('mouseenter mouseleave',function(event){
-        if($(window).width()>=400){
+        if($(window).width()>=480){
             if(event.type=='mouseenter'){
                 $(this).next('span').stop().fadeIn('slow');
                 $(this).stop().animate({
@@ -127,19 +127,49 @@ $(document).ready(function(){
 
 //------------------------------分页区的颜色变化----------------------//
     $('div.fenye div').on('mouseenter mouseleave',function(event) {
-        if(event.type=='mouseenter'){
-            $(this).stop().animate({
-                backgroundColor: "#b47160"
-            },{
-                duration: 400
-            });
-        }
-        else {
-            $(this).stop().animate({
-                backgroundColor: "#60acb4"
-            },{
-                duration: 400
-            });
+        if(!$(this).hasClass("active")){
+            if(event.type=='mouseenter'){
+                $(this).stop().animate({
+                    backgroundColor: "#b47160"
+                },{
+                    duration: 400
+                });
+            }
+            else {
+                $(this).stop().animate({
+                    backgroundColor: "#60acb4"
+                },{
+                    duration: 400
+                });
+            }
         }
     });
+
+//----------------------侧边栏响应滚动条的滑动效果----------------//
+    var divTop=100;
+    $(window).scroll(function(){
+        var offsetop;//$('div.sidebar-outline').offset().top;
+        if($(window).width()>=960){
+            if($(window).scrollTop()<=45){
+                offsetop=divTop+($(window).scrollTop())+"px";
+            }
+            else {
+                offsetop=divTop+($(window).scrollTop()-90)+"px";
+            }
+            $('div.sidebar-outline').animate({marginTop:offsetop},{duration:1200,queue:false})
+        }
+    });
+
+    window.onresize=function(){
+        if($(window).width()<960) {
+            $('div.sidebar-outline').css({marginTop:0})
+        }
+    };
+
+//----------------------左侧时间标签的颜色信息----------------//
+    if($('div.fenye div').hasClass("home")){
+        $('div.post-outline:nth-child(1) div.array-right').addClass("latest1");
+        $('div.post-outline:nth-child(3) div.array-right').addClass("latest2");
+        $('div.post-outline:nth-child(5) div.array-right').addClass("latest3");
+    }
 });
