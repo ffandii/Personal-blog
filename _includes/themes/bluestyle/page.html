@@ -116,7 +116,7 @@
 
 									{% for page in (1..paginator.total_pages) %}  
 										{% if page == 1 %}  
-									<div class="fenye-a"><a href="/index.html">{{ page }}</a></div> 
+									<div class="fenye-a home"><a href="/index.html">{{ page }}</a></div> 
 										{% else %}  
 									<div class="fenye-a"><a href="{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div>  
 										{% endif %}  
