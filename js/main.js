@@ -146,7 +146,7 @@ $(document).ready(function(){
     });
 
 //----------------------侧边栏响应滚动条的滑动效果----------------//
-    var divTop=100;
+    var divTop=60;
     $(window).scroll(function(){
         var offsetop;//$('div.sidebar-outline').offset().top;
         if($(window).width()>=960){
@@ -154,17 +154,21 @@ $(document).ready(function(){
                 offsetop=divTop+($(window).scrollTop())+"px";
             }
             else {
-                offsetop=divTop+($(window).scrollTop()-90)+"px";
+                offsetop=divTop+($(window).scrollTop()-60)+"px";
             }
             $('div.sidebar-outline').animate({marginTop:offsetop},{duration:1200,queue:false})
         }
     });
 
-    window.onresize=function(){
+    $(window).on("resize",function(){
         if($(window).width()<960) {
-            $('div.sidebar-outline').css({marginTop:0})
+            $('div.sidebar-outline').css({marginTop:0});
         }
-    };
+        else {
+            var offsetop=divTop+($(window).scrollTop())+"px";
+            $('div.sidebar-outline').animate({marginTop:offsetop},{duration:1200,queue:false})
+        }
+    });
 
 //----------------------左侧时间标签的颜色信息----------------//
     if($('div.fenye div').hasClass("home")){
@@ -184,7 +188,7 @@ $(document).ready(function(){
         });
     }
 
-    window.onresize=function(){
+    $(window).on("resize",function(){
         if($(window).width()>=960){
             var view_width=$(window).width();
             var view_height=$(window).height();
@@ -193,14 +197,14 @@ $(document).ready(function(){
                 'top': (view_height-120)+"px"
             });
         }
-    };
+    });
 
     $(window).scroll(function(){
         if($(window).scrollTop()>0){
-            $('body>span.icon').fadeIn('slow');
+            $('body>span.icon').stop().fadeIn('slow');
         }
         else {
-            $('body>span.icon').fadeOut('slow');
+            $('body>span.icon').stop().fadeOut('slow');
         }
     });
 
