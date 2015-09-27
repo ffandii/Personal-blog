@@ -1,0 +1,783 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>樊迪的博客</title>
+    <meta name="author" content="fan di">
+	
+	  <style type="text/css">
+        div {
+            color: #c1e5ff;
+            width: 200px;
+            height: 200px;
+            font-size: 50px;
+        }
+
+        canvas {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+    </style>
+	
+  </head>
+
+  <body> 
+ 
+	<canvas id="myCanvas" width="800" height="620">Drawing something here</canvas>
+	
+	<script type="text/javascript">
+		var unit=3.2;  //长度单位定为5px
+	var startX=250,startY=30;
+	var canvas=document.getElementById("myCanvas");
+	if(canvas.getContext){
+		var context=canvas.getContext("2d");
+		context.lineJoin = "round";
+
+		function drawImage(x,y,unit,context){
+			//底色信息
+			context.beginPath();
+			context.moveTo(startX-60*unit,startY+150*unit);
+			context.bezierCurveTo(startX-60*unit,startY+120*unit,startX+150*unit,startY+120*unit,startX+150*unit,startY+150*unit);
+			context.bezierCurveTo(startX+150*unit,startY+180*unit,startX-60*unit,startY+180*unit,startX-60*unit,startY+150*unit);
+			var grd = context.createLinearGradient(startX+105*unit,startY+100*unit,startX+105*unit,startY+200*unit);
+			grd.addColorStop(0, "#e3f3ff");
+			grd.addColorStop(1, "#c1e5ff");
+
+			context.fillStyle = grd;
+			context.fill();
+
+			//黑色的头发，作为背景
+			context.beginPath();
+			context.moveTo(startX-6*unit,startY);
+			context.lineTo(startX+unit*14,startY);
+			context.bezierCurveTo(startX+24*unit,startY+2*unit,startX+28*unit,startY+6*unit,startX+22*unit,startY+24*unit);
+			context.lineTo(startX+21*unit+unit*0.25,startY+12*unit);
+			context.lineTo(startX+18*unit-unit*0.25,startY+12*unit);
+			context.lineTo(startX+18*unit-unit*0.25,startY+14*unit);
+			context.quadraticCurveTo(startX+16*unit,startY+13*unit,startX+15*unit,startY+11.8*unit);
+			context.quadraticCurveTo(startX+15*unit,startY+13*unit,startX+15.8*unit,startY+14.2*unit);
+			context.quadraticCurveTo(startX+3*unit,startY+13.6*unit,startX-3*unit,startY+13.2*unit);
+
+			context.moveTo(startX-6*unit,startY);
+			context.quadraticCurveTo(startX-7*unit,startY+0.4*unit,startX-unit,startY+4*unit);
+			context.quadraticCurveTo(startX+1.4*unit,startY+4.4*unit,startX-12*unit,startY+4.1*unit);
+			context.quadraticCurveTo(startX-10*unit,startY+8*unit,startX-6.5*unit,startY+11.5*unit);
+			context.quadraticCurveTo(startX-6.8*unit,startY+16*unit,startX-5*unit,startY+24*unit);
+			context.quadraticCurveTo(startX-4.5*unit,startY+18*unit,startX-3*unit,startY+13.2*unit);
+			context.closePath();
+			context.fillStyle="#4c4c4c";
+			context.fill();
+
+			//面部
+			//左耳
+			context.beginPath();
+			context.moveTo(startX-6.2*unit,startY+19*unit);
+			context.quadraticCurveTo(startX-9*unit,startY+21*unit,startX-7.2*unit,startY+26*unit);
+			context.quadraticCurveTo(startX-6.5*unit,startY+27*unit,startX-6*unit,startY+26.5*unit);
+			context.quadraticCurveTo(startX-4.5*unit,startY+25*unit,startX-4*unit,startY+26.2*unit);
+
+			//下颚部分
+			context.lineTo(startX-2*unit,startY+32*unit);
+			context.quadraticCurveTo(startX-1*unit,startY+35*unit,startX+6*unit,startY+38*unit);
+			context.quadraticCurveTo(startX+8*unit,startY+38.5*unit,startX+11*unit,startY+38*unit);
+			context.quadraticCurveTo(startX+14*unit,startY+37*unit,startX+18*unit,startY+34*unit);
+
+			context.quadraticCurveTo(startX+20.5*unit,startY+29*unit,startX+21.3*unit,startY+26.2*unit);
+			context.quadraticCurveTo(startX+23.8*unit,startY+27*unit,startX+24.5*unit,startY+26*unit);
+			context.quadraticCurveTo(startX+26.3*unit,startY+21*unit,startX+23.5*unit,startY+19*unit);
+
+			context.lineTo(startX+22*unit,startY+24*unit);
+
+			context.lineTo(startX+21*unit+unit*0.25,startY+12*unit);
+			context.lineTo(startX+18*unit-unit*0.25,startY+12*unit);
+			context.lineTo(startX+18*unit-unit*0.25,startY+14*unit);
+			context.quadraticCurveTo(startX+16*unit,startY+13*unit,startX+15*unit,startY+11.8*unit);
+			context.quadraticCurveTo(startX+15*unit,startY+13*unit,startX+15.8*unit,startY+14.2*unit);
+			context.quadraticCurveTo(startX+3*unit,startY+13.6*unit,startX-3*unit,startY+13.2*unit);
+
+			context.quadraticCurveTo(startX-4.5*unit,startY+18*unit,startX-5*unit,startY+24*unit);
+			context.lineTo(startX-6.2*unit,startY+19*unit);
+
+			context.fillStyle="#fad8a4";
+			context.fill();
+			context.strokeStyle="#eccc9b";
+			context.lineWidth=2*unit/4;
+			context.stroke();
+
+			//绘制右眼睛
+			context.beginPath();
+			context.moveTo(startX+7*unit,startY+20*unit);
+			context.lineTo(startX+10*unit,startY+20*unit);
+			context.quadraticCurveTo(startX+10.5*unit,startY+18.8*unit,startX+11*unit,startY+19*unit);
+			//       context.lineTo(startX+14*unit,startY+19*unit);
+			context.quadraticCurveTo(startX+15*unit,startY+18.5*unit,startX+18*unit,startY+19.2*unit);
+			context.quadraticCurveTo(startX+18.8*unit,startY+20.3*unit,startX+19*unit,startY+22.2*unit);
+			context.quadraticCurveTo(startX+18.8*unit,startY+23.8*unit,startX+18.2*unit,startY+24.8*unit);
+			context.quadraticCurveTo(startX+15.8*unit,startY+25.2*unit,startX+11.2*unit,startY+24.8*unit);
+			context.quadraticCurveTo(startX+10.3*unit,startY+23.6*unit,startX+10*unit,startY+20*unit);
+
+			//绘制左眼睛
+			context.moveTo(startX+7*unit,startY+20*unit);
+			context.quadraticCurveTo(startX+6.5*unit,startY+18.8*unit,startX+6*unit,startY+19*unit);
+			context.quadraticCurveTo(startX+2*unit,startY+18.5*unit,startX-1*unit,startY+19.2*unit);
+			context.quadraticCurveTo(startX-1.8*unit,startY+20.3*unit,startX-2*unit,startY+22.2*unit);
+			context.quadraticCurveTo(startX-1.8*unit,startY+23.8*unit,startX-1.2*unit,startY+24.8*unit);
+			context.quadraticCurveTo(startX+1.2*unit,startY+25.2*unit,startX+5.8*unit,startY+24.8*unit);
+			context.quadraticCurveTo(startX+6.7*unit,startY+23.6*unit,startX+7*unit,startY+20*unit);
+
+			context.lineWidth=4*unit/4;
+			context.strokeStyle="#58b5af";
+			context.stroke();
+			//绘制眼架
+			context.moveTo(startX-2*unit,startY+22.2*unit);
+			context.lineTo(startX-4.5*unit,startY+17.5*unit);
+			context.moveTo(startX+19*unit,startY+22.2*unit);
+			context.lineTo(startX+22*unit,startY+16.8*unit);
+	//        context.bezierCurveTo()
+			context.lineWidth=3*unit/4;
+			context.stroke();
+
+			//绘制脖子
+			context.beginPath();
+			context.moveTo(startX+3*unit,startY+36.8*unit);
+			context.lineTo(startX+3*unit,startY+44*unit);
+			context.lineTo(startX+8*unit,startY+49*unit);
+			context.lineTo(startX+13*unit,startY+44*unit);
+			context.lineTo(startX+13*unit,startY+37.3*unit);
+			context.bezierCurveTo(startX+10*unit,startY+39.1*unit,startX+6*unit,startY+38.6*unit,startX+3*unit,startY+36.8*unit);
+			context.closePath();
+			context.fillStyle='#fad790';
+			context.fill();
+
+			//绘制身体
+			context.beginPath();
+			context.moveTo(startX+3*unit,startY+44*unit);
+			context.quadraticCurveTo(startX-10*unit,startY+45*unit,startX-12*unit,startY+46*unit);
+			context.quadraticCurveTo(startX-20*unit,startY+55*unit,startX-28*unit,startY+76*unit);
+			context.bezierCurveTo(startX-29.2*unit,startY+77.2*unit,startX-23*unit,startY+80.9*unit,startX-24*unit,startY+80*unit);
+			context.lineTo(startX+40*unit,startY+80*unit);
+			context.bezierCurveTo(startX+39*unit,startY+80.9*unit,startX+45.2*unit,startY+77.2*unit,startX+44*unit,startY+76*unit);
+			context.quadraticCurveTo(startX+36*unit,startY+55*unit,startX+28*unit,startY+46*unit);
+			context.quadraticCurveTo(startX+26*unit,startY+45*unit,startX+13*unit,startY+44*unit);
+			context.lineTo(startX+8*unit,startY+49*unit);
+			context.lineTo(startX+3*unit,startY+44*unit);
+
+			context.fillStyle='#f1af2a';
+			context.fill();
+
+			//胸前菱形标志
+			context.beginPath();
+			context.moveTo(startX,startY+54*unit);
+			context.lineTo(startX+2*unit,startY+51*unit);
+			context.lineTo(startX+4*unit,startY+54*unit);
+			context.lineTo(startX+2*unit,startY+57*unit);
+			context.lineTo(startX,startY+54*unit);
+
+			context.moveTo(startX+4*unit,startY+54*unit);
+			context.lineTo(startX+6*unit,startY+51*unit);
+			context.lineTo(startX+8*unit,startY+54*unit);
+			context.lineTo(startX+6*unit,startY+57*unit);
+			context.lineTo(startX+4*unit,startY+54*unit);
+
+			context.moveTo(startX+8*unit,startY+54*unit);
+			context.lineTo(startX+10*unit,startY+51*unit);
+			context.lineTo(startX+12*unit,startY+54*unit);
+			context.lineTo(startX+10*unit,startY+57*unit);
+			context.lineTo(startX+8*unit,startY+54*unit);
+
+			context.moveTo(startX+12*unit,startY+54*unit);
+			context.lineTo(startX+14*unit,startY+51*unit);
+			context.lineTo(startX+16*unit,startY+54*unit);
+			context.lineTo(startX+14*unit,startY+57*unit);
+			context.lineTo(startX+12*unit,startY+54*unit);
+
+			context.fillStyle="#988272";
+			context.fill();
+
+			//绘制书桌
+			context.beginPath();
+			context.moveTo(startX-56*unit,startY+80*unit);
+			context.lineTo(startX+136*unit,startY+80*unit);
+			context.lineTo(startX+136*unit,startY+152*unit);
+			context.lineTo(startX+130*unit,startY+152*unit);
+			context.lineTo(startX+130*unit,startY+88*unit);
+			context.lineTo(startX+65*unit,startY+88*unit);
+			context.lineTo(startX+65*unit,startY+152*unit);
+			context.lineTo(startX+59*unit,startY+152*unit);
+			context.lineTo(startX+59*unit,startY+88*unit);
+			context.lineTo(startX-38*unit,startY+88*unit);
+			context.lineTo(startX-38*unit,startY+152*unit);
+			context.lineTo(startX-43*unit,startY+152*unit);
+			context.lineTo(startX-43*unit,startY+88*unit);
+			context.lineTo(startX-56*unit,startY+88*unit);
+			context.lineTo(startX-56*unit,startY+80*unit);
+
+			context.fillStyle="#74563d";
+			context.fill();
+			context.lineWidth=3*unit/4;
+			context.strokeStyle="#624934";
+			context.stroke();
+
+			//绘制水杯
+			context.beginPath();
+			context.moveTo(startX+42*unit,startY+80*unit);
+			context.lineTo(startX+50*unit,startY+80*unit);
+			context.lineTo(startX+50.6*unit,startY+68*unit);
+			context.lineTo(startX+41.4*unit,startY+68*unit);
+			context.lineTo(startX+42*unit,startY+80*unit);
+			context.fillStyle="#c3996b";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+41.4*unit,startY+68*unit);
+			context.lineTo(startX+43*unit,startY+67*unit);
+			context.lineTo(startX+49*unit,startY+67*unit);
+			context.lineTo(startX+50.6*unit,startY+68*unit);
+			context.lineTo(startX+41.4*unit,startY+68*unit);
+			context.fillStyle="#745844";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+41.4*unit,startY+72*unit);
+			context.lineTo(startX+50.4*unit,startY+72*unit);
+			context.lineTo(startX+50.2*unit,startY+75.4*unit);
+			context.lineTo(startX+41.8*unit,startY+75.4*unit);
+			context.lineTo(startX+41.4*unit,startY+72*unit);
+			context.fillStyle="#ffffff";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+47.2*unit,startY+73.7*unit);
+			context.arc(startX+46*unit,startY+73.7*unit,1.2*unit,0,2*Math.PI,false);
+			context.fillStyle="#8c7769";
+			context.fill();
+
+			//绘制书本
+			context.beginPath();
+			context.moveTo(startX+85*unit,startY+80*unit);
+			context.lineTo(startX+58*unit,startY+80*unit);
+			context.lineTo(startX+58*unit,startY+76*unit);
+			context.lineTo(startX+85*unit,startY+76*unit);
+			context.strokeStyle="#6fbdb6";
+			context.lineWidth=8*unit/4;
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(startX+85*unit,startY+80*unit);
+			context.lineTo(startX+85*unit,startY+76*unit);
+			context.strokeStyle="#bababa";
+			context.lineWidth=1*unit/4;
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(startX+82*unit,startY+75.2*unit);
+			context.lineTo(startX+61*unit,startY+75.2*unit);
+			context.lineTo(startX+61*unit,startY+73.2*unit);
+			context.lineTo(startX+82*unit,startY+73.2*unit);
+			context.strokeStyle="#fea36a";
+			context.lineWidth=4*unit/4;
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(startX+82*unit,startY+73.2*unit);
+			context.lineTo(startX+82*unit,startY+75.2*unit);
+			context.lineWidth=1*unit/4;
+			context.strokeStyle="#bababa";
+			context.stroke();
+
+			//绘制笔筒
+			context.beginPath();
+			context.moveTo(startX+104*unit,startY+80*unit);
+			context.lineTo(startX+132*unit,startY+80*unit);
+			context.lineTo(startX+132*unit,startY+52*unit);
+			context.lineTo(startX+104*unit,startY+52*unit);
+			context.lineTo(startX+104*unit,startY+80*unit);
+			context.fillStyle="#f5dd93";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+111*unit,startY+52*unit);
+			context.lineTo(startX+104*unit,startY+59*unit);
+			context.moveTo(startX+118*unit,startY+52*unit);
+			context.lineTo(startX+104*unit,startY+66*unit);
+			context.moveTo(startX+125*unit,startY+52*unit);
+			context.lineTo(startX+104*unit,startY+73*unit);
+			context.moveTo(startX+132*unit,startY+52*unit);
+			context.lineTo(startX+104*unit,startY+80*unit);
+			context.moveTo(startX+132*unit,startY+59*unit);
+			context.lineTo(startX+111*unit,startY+80*unit);
+			context.moveTo(startX+132*unit,startY+66*unit);
+			context.lineTo(startX+118*unit,startY+80*unit);
+			context.moveTo(startX+132*unit,startY+73*unit);
+			context.lineTo(startX+125*unit,startY+80*unit);
+
+
+			context.moveTo(startX+104*unit,startY+73*unit);
+			context.lineTo(startX+111*unit,startY+80*unit);
+			context.moveTo(startX+104*unit,startY+66*unit);
+			context.lineTo(startX+118*unit,startY+80*unit);
+			context.moveTo(startX+104*unit,startY+59*unit);
+			context.lineTo(startX+125*unit,startY+80*unit);
+			context.moveTo(startX+104*unit,startY+52*unit);
+			context.lineTo(startX+132*unit,startY+80*unit);
+			context.moveTo(startX+111*unit,startY+52*unit);
+			context.lineTo(startX+132*unit,startY+73*unit);
+			context.moveTo(startX+118*unit,startY+52*unit);
+			context.lineTo(startX+132*unit,startY+66*unit);
+			context.moveTo(startX+125*unit,startY+52*unit);
+			context.lineTo(startX+132*unit,startY+59*unit);
+			context.lineWidth=2*unit/4;
+			context.strokeStyle="#fbf2d6";
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(startX+107*unit,startY+52*unit);
+			context.lineTo(startX+111*unit,startY+52*unit);
+			context.lineTo(startX+111*unit,startY+40*unit);
+			context.lineTo(startX+107*unit,startY+40*unit);
+			context.lineTo(startX+107*unit,startY+52*unit);
+			var gradient = context.createLinearGradient(startX+107*unit,startY+52*unit,startX+111*unit,startY+40*unit);
+			gradient.addColorStop(0, "#abb64c");
+			gradient.addColorStop(1, "#d2d8a5");
+
+			context.fillStyle = gradient;
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+111*unit,startY+52*unit);
+			context.lineTo(startX+113.2*unit,startY+52*unit);
+			context.lineTo(startX+113.2*unit,startY+36*unit);
+			context.lineTo(startX+111*unit,startY+36*unit);
+			context.lineTo(startX+111*unit,startY+52*unit);
+			gradient = context.createLinearGradient(startX+111*unit,startY+52*unit,startX+113.2*unit,startY+36*unit);
+			gradient.addColorStop(0, "#f2bea5");
+			gradient.addColorStop(1, "#e8c4b4");
+			context.fillStyle = gradient;
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+113.2*unit,startY+52*unit);
+			context.lineTo(startX+119.2*unit,startY+52*unit);
+			context.lineTo(startX+119.2*unit,startY+44*unit);
+			context.lineTo(startX+113.2*unit,startY+44*unit);
+			context.lineTo(startX+113.2*unit,startY+52*unit);
+			gradient = context.createLinearGradient(startX+111*unit,startY+52*unit,startX+113.2*unit,startY+36*unit);
+			gradient.addColorStop(0, "#61b1a9");
+			gradient.addColorStop(1, "#abe0db");
+			context.fillStyle = gradient;
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+129*unit,startY+52*unit);
+			context.lineTo(startX+124*unit,startY+52*unit);
+			context.lineTo(startX+126*unit,startY+42*unit);
+			context.bezierCurveTo(startX+127*unit,startY+40*unit,startX+131*unit,startY+40*unit,startX+132*unit,startY+42*unit);
+			context.lineTo(startX+129*unit,startY+52*unit);
+			gradient = context.createLinearGradient(startX+124*unit,startY+52*unit,startX+132*unit,startY+36*unit);
+			gradient.addColorStop(0, "#dfdfdf");
+			gradient.addColorStop(1, "#edebeb");
+			context.fillStyle = gradient;
+			context.fill();
+
+			//台灯
+			context.beginPath();
+			context.moveTo(startX-37*unit,startY+80*unit);
+			context.lineTo(startX-51*unit,startY+80*unit);
+			context.lineTo(startX-45.5*unit,startY+77*unit);
+			context.lineTo(startX-47*unit,startY+60*unit);
+			context.bezierCurveTo(startX-47.8*unit,startY+58.5*unit,startX-47.5*unit,startY+56.4*unit,startX-45*unit,startY+56*unit);
+			context.lineTo(startX-40*unit,startY+46*unit);
+			context.lineTo(startX-37*unit,startY+46*unit);
+			context.bezierCurveTo(startX-35*unit,startY+43*unit,startX-28*unit,startY+43*unit,startX-26*unit,startY+46*unit);
+			context.lineTo(startX-30.5*unit,startY+56*unit);
+			context.bezierCurveTo(startX-34*unit,startY+56.5*unit,startX-36*unit,startY+52*unit,startX-37*unit,startY+49*unit);
+			context.lineTo(startX-39*unit,startY+49*unit);
+			context.lineTo(startX-43.5*unit,startY+56*unit);
+			context.bezierCurveTo(startX-42.5*unit,startY+58*unit,startX-44*unit,startY+59*unit,startX-45.5*unit,startY+60*unit);
+			context.lineTo(startX-44*unit,startY+77*unit);
+			context.lineTo(startX-37*unit,startY+80*unit);
+			context.fillStyle = "#62b7af";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+5*unit,startY+56.5*unit);
+			context.lineTo(startX-26.6*unit,startY+47*unit);
+			context.lineTo(startX-30*unit,startY+54.5*unit);
+			context.lineTo(startX-3*unit,startY+70*unit);
+			context.closePath();
+			context.fillStyle = "rgba(229,230,231,0.65)";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-27.5*unit,startY+49*unit);
+			context.arc(startX-28.25*unit,startY+51*unit,2*unit,-2.1*Math.PI/6,4*Math.PI/6,false);
+			context.closePath();
+			context.fillStyle = "#f5e098";
+			context.fill();
+
+			//笔记本
+			context.beginPath();
+			context.moveTo(startX+30*unit,startY+80*unit);
+			context.lineTo(startX-13*unit,startY+80*unit);
+			context.quadraticCurveTo(startX-14*unit,startY+79.7*unit,startX-15*unit,startY+78*unit);
+			context.lineTo(startX-15*unit,startY+58*unit);
+			context.quadraticCurveTo(startX-14.5*unit,startY+57.3*unit,startX-14*unit,startY+57*unit);
+			context.lineTo(startX+31*unit,startY+57*unit);
+			context.quadraticCurveTo(startX+31.5*unit,startY+57.3*unit,startX+32*unit,startY+58*unit);
+			context.lineTo(startX+32*unit,startY+78*unit);
+			context.quadraticCurveTo(startX+31*unit,startY+79.7*unit,startX+30*unit,startY+80*unit);
+			context.fillStyle = "#dcddde";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+30*unit,startY+80*unit);
+			context.lineTo(startX-13*unit,startY+80*unit);
+			context.quadraticCurveTo(startX-13.5*unit,startY+79.7*unit,startX-14*unit,startY+79*unit);
+			context.quadraticCurveTo(startX+10*unit,startY+74*unit,startX+32*unit,startY+58*unit);
+			context.lineTo(startX+32*unit,startY+78*unit);
+			context.quadraticCurveTo(startX+31*unit,startY+79.7*unit,startX+30*unit,startY+80*unit);
+
+			context.fillStyle = "#d5d8da";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+3*unit,startY+68*unit);
+			context.bezierCurveTo(startX+3*unit,startY+66*unit,startX+13*unit,startY+66*unit,startX+13*unit,startY+68*unit);
+			context.bezierCurveTo(startX+13*unit,startY+70*unit,startX+3*unit,startY+70*unit,startX+3*unit,startY+68*unit);
+			context.lineWidth=3*unit/4;
+			context.strokeStyle="#a3b4c5";
+			context.stroke();
+
+			//身体下半身
+			context.beginPath();
+			context.moveTo(startX-15*unit,startY+88*unit);
+			context.quadraticCurveTo(startX-14*unit,startY+95*unit,startX-12*unit,startY+98*unit);
+			context.lineTo(startX+29*unit,startY+98*unit);
+			context.quadraticCurveTo(startX+31*unit,startY+95*unit,startX+32*unit,startY+88*unit);
+			context.lineTo(startX-15*unit,startY+88*unit);
+			context.fillStyle = "#c6b7b0";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-11*unit,startY+88*unit);
+			context.lineTo(startX+28*unit,startY+88*unit);
+			context.lineTo(startX+28*unit,startY+93*unit);
+			context.lineTo(startX-11*unit,startY+93*unit);
+			context.lineTo(startX-11*unit,startY+88*unit);
+			context.fillStyle = "#f1af2a";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-11*unit,startY+93*unit);
+			context.lineTo(startX+28*unit,startY+93*unit);
+			context.lineTo(startX+28*unit,startY+96*unit);
+			context.lineTo(startX-11*unit,startY+96*unit);
+			context.lineTo(startX-11*unit,startY+93*unit);
+			context.fillStyle = "#9b8576";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-11*unit,startY+96*unit);
+			context.quadraticCurveTo(startX-12*unit,startY+98*unit,startX-12.6*unit,startY+100*unit);
+			context.quadraticCurveTo(startX-12*unit,startY+98*unit,startX-12.6*unit,startY+100*unit);
+			context.bezierCurveTo(startX-12.6*unit,startY+105*unit,startX-11*unit,startY+108*unit,startX-8*unit,startY+108*unit);
+			context.lineTo(startX+25*unit,startY+108*unit);
+			context.bezierCurveTo(startX+28*unit,startY+108*unit,startX+29.6*unit,startY+105*unit,startX+29.6*unit,startY+100*unit);
+			context.quadraticCurveTo(startX+29*unit,startY+98*unit,startX+28*unit,startY+96*unit);
+			context.lineTo(startX-11*unit,startY+96*unit);
+			context.fillStyle = "#6a4e37";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-10*unit,startY+102*unit);
+			context.quadraticCurveTo(startX-10.4*unit,startY+118*unit,startX-9*unit,startY+145*unit);
+			context.lineTo(startX-1*unit,startY+145*unit);
+			context.quadraticCurveTo(startX+1*unit,startY+135*unit,startX+2*unit,startY+102*unit);
+			context.bezierCurveTo(startX-0*unit,startY+98*unit,startX-8*unit,startY+98*unit,startX-10*unit,startY+102*unit);
+			context.fillStyle = "#856a55";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+14*unit,startY+102*unit);
+			context.bezierCurveTo(startX+16*unit,startY+98*unit,startX+24*unit,startY+98*unit,startX+26*unit,startY+102*unit);
+			context.quadraticCurveTo(startX+26.4*unit,startY+118*unit,startX+25*unit,startY+145*unit);
+			context.lineTo(startX+17*unit,startY+145*unit);
+			context.quadraticCurveTo(startX+15*unit,startY+135*unit,startX+14*unit,startY+102*unit);
+			context.fillStyle = "#856a55";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+16*unit,startY+104*unit);
+			context.quadraticCurveTo(startX+20*unit,startY+102*unit,startX+24*unit,startY+104*unit);
+			context.lineTo(startX+23*unit,startY+143*unit);
+			context.lineTo(startX+18*unit,startY+143*unit);
+			context.lineTo(startX+16*unit,startY+104*unit);
+			context.fillStyle = "#72563f";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-0*unit,startY+104*unit);
+			context.quadraticCurveTo(startX-4*unit,startY+102*unit,startX-8*unit,startY+104*unit);
+			context.lineTo(startX-7*unit,startY+143*unit);
+			context.lineTo(startX-2*unit,startY+143*unit);
+			context.lineTo(startX-0*unit,startY+104*unit);
+			context.fillStyle = "#72563f";
+			context.fill();
+
+			//绘制鞋子
+			context.beginPath();
+			context.moveTo(startX+24*unit,startY+144*unit);
+			context.lineTo(startX+18*unit,startY+144*unit);
+			context.lineTo(startX+17*unit,startY+150*unit);
+			context.lineTo(startX+21*unit,startY+152*unit);
+			context.lineTo(startX+25*unit,startY+150*unit);
+			context.lineTo(startX+24*unit,startY+144*unit);
+			context.fillStyle = "#9abc2e";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX+17*unit,startY+150*unit);
+			context.quadraticCurveTo(startX+21*unit,startY+156*unit,startX+25*unit,startY+150*unit);
+			context.lineTo(startX+21*unit,startY+152*unit);
+			context.lineTo(startX+17*unit,startY+150*unit);
+			context.fillStyle = "#715244";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-2*unit,startY+144*unit);
+			context.lineTo(startX-8*unit,startY+144*unit);
+			context.lineTo(startX-9*unit,startY+150*unit);
+			context.lineTo(startX-5*unit,startY+152*unit);
+			context.lineTo(startX-1*unit,startY+150*unit);
+			context.moveTo(startX-2*unit,startY+144*unit);
+			context.fillStyle = "#9abc2e";
+			context.fill();
+
+			context.beginPath();
+			context.moveTo(startX-9*unit,startY+150*unit);
+			context.quadraticCurveTo(startX-5*unit,startY+156*unit,startX-1*unit,startY+150*unit);
+			context.lineTo(startX-5*unit,startY+152*unit);
+			context.lineTo(startX-9*unit,startY+150*unit);
+			context.fillStyle = "#715244";
+			context.fill();
+		}
+
+		drawImage(startX,startY,unit,context);
+		/*
+		 context.lineWidth=2;
+		 context.strokeStyle="#cccccc";
+		 context.stroke();*/
+}
+	</script>
+ 
+      <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <header role="banner">
+            <nav role="navigation" class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="index.html">
+                                    <img src="images/logo.png" alt="Home" width="116" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 right">
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="index.html" name="Blog" data-toggle="tooltip" data-placement="bottom" title="博客">  
+                                        <span class="icon fa fa-tencent-weibo"></span>
+                                    </a></li>
+                                    <li><a href="#" name="Gallery" data-toggle="tooltip" data-placement="bottom" title="相册">
+                                        <span class="icon fa fa-picture-o"></span>
+                                    </a></li>
+                                    <li class="active"><a href="#" name="About me" data-toggle="tooltip" data-placement="bottom" title="me">
+                                        <span class="icon fa fa-user"></span>
+                                    </a></li>
+                                    <li><a href="demo.html" name="Demo online" data-toggle="tooltip" data-placement="bottom" title="Demo">
+                                        <span class="icon fa fa-play"></span>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+		<div class="body-contents">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-xs-1"></div>
+					<div class="col-lg-4 col-md-4 col-xs-10">
+						<div class="left-side">
+							<div class="basic-information">
+								<div class="left-basic">
+									<img width="150" height="150" src="images/me/messi.png" class="portrait"/>
+								</div>
+								<div class="right-basic">
+									<div class="job">Front-End developer</div>
+									<div class="status">
+										<div class="left">
+											<span class="icon fa fa-map-marker"></span>
+											<a href="http://www.google.cn/maps/place/%E6%B9%96%E5%8C%97%E7%9C%81%E6%AD%A6%E6%B1%89%E5%B8%82/@28.7323838,115.7279205,965163m/data=!3m1!1e3!4m2!3m1!1s0x342eaef8dd85f26f:0x39c2c9ac6c582210">
+												武汉, 湖北
+											</a></div>
+										<div class="right">
+											<span class="icon fa fa-university"></span>
+											<a href="https://zh.wikipedia.org/wiki/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6">
+												WUST
+											</a></div>
+										<div class="bottom"></div>
+									</div>
+									<div class="status">
+										<div class="left">
+											<span class="icon fa fa-calendar"></span>
+											<a href="https://www.baidu.com/s?wd=1992%2F7%2F22%20%20%E9%98%B4%E5%8E%86&rsv_spt=1&rsv_iqid=0xdaeaf9310000925f&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&inputT=2073&rsv_t=87cdr12rOVgEgxmNV19NNz2TmmLZFYPV7R49j0itFPvbb5OUHdZX0G6rp4M2%2BLklUQ9s&oq=1992%2F7%2F22%E7%94%9F%E6%97%A5&rsv_pq=8c9917550000bad7&rsv_sug3=37&rsv_sug2=0&rsv_sug4=2158">
+												1992/7/22</a></div>
+										<div class="right">
+											<span class="icon fa fa-graduation-cap"></span>
+											<a href="https://zh.wikipedia.org/wiki/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6">
+												HUST</a></div>
+										<div class="bottom"></div>
+									</div>
+								</div>
+								<div class="education"></div>
+							</div>
+							<div class="gap-line"></div>
+							<div class="major">
+								<div class="major-header">
+									<div class="rect">Skills</div>
+									<span class="icon glyphicon glyphicon-triangle-right"></span>
+									<span class="icon glyphicon glyphicon-menu-right"></span>
+								</div>
+								<div class="major-contents">
+									<img src="images/me/skills.png" width="360" height="225" />
+								</div>
+								<div class="major-header">
+									<div class="rect">爱好</div>
+									<span class="icon glyphicon glyphicon-triangle-right"></span>
+									<span class="icon glyphicon glyphicon-menu-right"></span>
+								</div>
+								<div class="habits">
+									<div id="habit1">
+										<span class="icon fa fa-soccer-ball-o"></span>
+										<a href="http://fcbarcelona.qq.com/"><div class="des">足球</div></a>
+									</div>
+									<div id="habit2">
+										<span class="icon glyphicon glyphicon-book"></span>
+										<a href="http://read.douban.com/?dcs=top-nav&dcm=douban"><div class="des">阅读</div></a>
+									</div>
+									<div id="habit3">
+										<span class="icon fa fa-file-movie-o"></span>
+										<a href="http://movie.douban.com/"><div class="des">电影</div></a>
+									</div>
+									<div id="habit4">
+										<span class="icon fa fa-music"></span>
+										<a href="http://y.qq.com/topic/yt96/index.html?pgv_ref"><div class="des">音乐</div></a>
+									</div>
+									<div id="habit5">
+										<span class="icon fa fa-bed"></span>
+										<a href=""><div class="des">睡觉</div></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-1"></div>
+					<div class="col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-10">
+						<div class="right-side">
+							<div class="project-header">
+								<div class="rect">项目经历</div>
+								<span class="icon glyphicon glyphicon-triangle-right"></span>
+								<span class="icon glyphicon glyphicon-menu-right"></span>
+							</div>
+							<div class="project-contents">
+
+								<div class="project">
+									<div class="header">
+										<div class="left">
+											<div class="name">
+												<a href="http://ffandii.github.io/Personal-blog/">个人博客</a>
+											</div>
+											<div class="tag">
+												<span>Jekyll</span>
+												<span>GitHub</span>
+												<span>bootstrap</span>
+												<span>javascript</span>
+											</div>
+										</div>
+										<div class="right">
+											8, 2015
+										</div>
+									</div>
+									<div class="description">
+										采用twitter公司的前端框架<a href="http://www.bootcss.com/">bootstrap</a>，借助<a href="http://jekyll.bootcss.com/">Jekyll</a>工具在<a href="https://education.github.com/">GitHub</a>上搭建了自己的第一个静态网站和博客。
+										站点博客记录了我前端道路上的心得和体会，完成的一些项目和demo，以及我个人的基本信息。响应式布局的设计和友好的交互界面可以为不同终端的用户提供更加舒适的体验。
+									</div>
+								</div>
+
+								<div class="project-gap-line"></div>
+
+								<div class="project">
+									<div class="header">
+										<div class="left">
+											<div class="name">
+												<a href="http://www.smartcar.au.tsinghua.edu.cn/">飞思卡尔杯全国大学生智能汽车竞赛</a>
+											</div>
+											<div class="tag">
+												<span>C/C++</span>
+												<span>单片机</span>
+												<span>信号处理</span>
+											</div>
+										</div>
+										<div class="right">
+											8, 2013
+										</div>
+									</div>
+									<div class="description">
+										基于飞思卡尔半导体公司16位单片机的两轮直立平衡车，利用光电传感器检测道路信息，采集加速度计和陀螺仪的信号利用融合滤波算法计算车体的角度状态，通过运动控制算法驱动左右轮电机进而保持车体的平衡、行进及转向（原理类似警用直立车），具有稳定的动态性能，获全国总决赛一等奖。
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-xs-1"></div>
+				</div>
+			</div>
+		</div>
+    </div>
+            <div class="container">
+                <div class="footer-cell">
+                    <span class="icon fa fa-qq"></span>
+                    <a href="https://mail.qq.com/cgi-bin/loginpage">1262623665</a>
+                </div>
+                <div class="footer-cell">
+                    &copy; 2015 樊迪制作 前端小伙
+                </div>
+                <div class="footer-cell">
+                    <span class="icon fa fa-github"></span>
+                    <a href="https://github.com/ffandii">Github</a>
+                </div>
+            </div>
+    </di
+  </body>
+ </html>
