@@ -227,7 +227,7 @@ $(document).ready(function(){
     $.ajax({
         url: 'search.txt',
         success: function(data) {
-            json=JSON.parse(data);
+            JSON.parse(data);
         }
     });
     function showCategory(text){
