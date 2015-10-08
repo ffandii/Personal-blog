@@ -258,8 +258,10 @@ $(document).ready(function(){
         if(json!=undefined){
             var text=$(this).find("div.per-first").text();
             var html=showCategory(text);
-            var blog=document.querySelector('div.blog-outline');
-            blog.innerHTML=html;
+            var blog=$('div.blog-outline');
+            blog.slideUp(150,function(){
+                $(this).html(html).hide().slideDown(400);
+            });
             $('div.blog-outline div.post-outline div.post-header a').each(function(){
                 $('<span class="icon fa fa-book"></span>').insertAfter(this).hide();
             });
