@@ -223,5 +223,10 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 //--------------------特定类搜索功能的实现，基于ajax--------------------//
-    
+    $.ajax({
+        url: 'search.txt',
+        success: function(data) {
+            alert(JSON.parse(data));
+        }
+    });
 });
