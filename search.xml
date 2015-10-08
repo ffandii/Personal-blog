@@ -2,13 +2,4 @@
 layout: null
 ---
 {% include JB/setup %}
-
-<articles>
-{% for post in site.posts %}
-<article>
-    <title>{{ post.title }}</title>
-    <url>{{ site.url }}{{ post.url }}</url>
-    <date>{{ post.date | date_to_utc | date: '%Y-%m-%d'}}</date>
-</article>
-{% endfor %}
-</articles>
+{% for post in site.posts %}<div><title>{{ post.title }}</title><url>{{ site.url }}{{ post.url }}</url><date>{{ post.date | date_to_utc | date: '%Y-%m-%d'}}</date></div>{% endfor %}
