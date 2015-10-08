@@ -253,5 +253,8 @@ $(document).ready(function(){
         return "";
     }
 
-    
+    $('div.click').on("click",function(){
+        var text=$(this).find("div.per-first").text();
+        alert(text);
+    });
 });
