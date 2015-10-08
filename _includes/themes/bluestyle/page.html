@@ -135,14 +135,28 @@
 
                     <div class="blog-side-bar col-lg-3 col-md-4">
                         <div class="sidebar-outline">
-							{% for category in site.categories %}
-                                <div class="cell">
-                                    <div class="per-category">
-                                        <div class="per-first">{{ category | first }}</div>
-                                            <span>{{ category | last | size }}</span>
-                                        </div>
-                                    <div class="transparent"></div>                           
+							<div class="cell">
+								<div class="per-category">
+									<div class="per-first">
+										全部
+									</div>
+									<span>
+										{{ paginator.total_posts }}
+									</span>
 								</div>
+							</div>
+							{% for category in site.categories %}
+                            <div class="cell">
+                                <div class="per-category">
+                                    <div class="per-first">
+										{{ category | first }}
+									</div>
+                                    <span>
+										{{ category | last | size }}
+									</span>
+                                </div>
+                                <div class="transparent"></div>                           
+							</div>
 							{% endfor %}
 						</div>
                     </div>
