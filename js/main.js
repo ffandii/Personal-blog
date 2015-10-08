@@ -14,21 +14,10 @@ $(document).ready(function(){
 
 //------------------侧边栏的展开和折叠--------------------------
     $('div.cell').on('click', function() {
-        if($(this).next('div.hid-ul').hasClass('hiden')){
-            $(this).next('div.hid-ul').removeClass('hiden');
-            $(this).next('div.hid-ul').show(300);
-        }
-        else {
-            $(this).next('div.hid-ul').addClass('hiden');
-            $(this).next('div.hid-ul').hide(300);
-        }
+
     });
 
     $('div.cell').on('mouseenter',function(){
-        /*
-         var $details=$(this).find('span.sum');
-         $details.addClass('animation');*/
-
 
         var $details=$(this).find('span');
         if(!$details.hasClass('animation')){
@@ -73,14 +62,14 @@ $(document).ready(function(){
     $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                backgroundColor: "#96B86C"
+                backgroundColor: "#f6f6f6"
             },{
                 duration: "fast"
             });
         }
         else {
             $(this).stop().animate({
-                backgroundColor: "#a1c279"
+                backgroundColor: "#ffffff"
             },{
                 duration: "fast"
             });
