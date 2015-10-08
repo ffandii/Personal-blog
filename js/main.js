@@ -2,17 +2,17 @@
 
 $(document).ready(function(){
     var delay={ "show": 800, "hide": 800 };
-    $('[data-toggle="tooltip"]').tooltip(delay); //µ¼º½À¸µÄÌáÊ¾¿ò
+    $('[data-toggle="tooltip"]').tooltip(delay); //å¯¼èˆªæ çš„æç¤ºæ¡†
 
-//------------------É¾³ı×îºóÒ»ĞĞµÄĞéÏß---------------------//
+//------------------åˆ é™¤æœ€åä¸€è¡Œçš„è™šçº¿---------------------//
     $('div.blog-outline div.post-outline').each(function(){
         $('<div class="gap-line"></div>').insertAfter(this);
     });
 
-    //blog-outline²¿·ÖµÄ·Ö¸îÏß
+    //blog-outlineéƒ¨åˆ†çš„åˆ†å‰²çº¿
     $('div.blog-outline div.gap-line:nth-last-child(1)').remove();
 
-//------------------²à±ßÀ¸µÄÕ¹¿ªºÍÕÛµş--------------------------
+//------------------ä¾§è¾¹æ çš„å±•å¼€å’ŒæŠ˜å --------------------------
     $('div.cell').on('click', function() {
 
     });
@@ -32,12 +32,12 @@ $(document).ready(function(){
         }
 
     });
-//--------------------±êÌâÊéÇ©µÄÌáÊ¾ÏÔÊ¾ºÍÒş²Ø----------------------------
+//--------------------æ ‡é¢˜ä¹¦ç­¾çš„æç¤ºæ˜¾ç¤ºå’Œéšè—---------------------------
     $('div.blog-outline div.post-outline div.post-header a').each(function(){
         $('<span class="icon fa fa-book"></span>').insertAfter(this).hide();
     });
 
-    $('div.post-header a').on('mouseenter mouseleave',function(event){
+    $('div.blog-outline').on('mouseenter mouseleave','div.post-header a',function(event){
         if($(window).width()>=480){
             if(event.type=='mouseenter'){
                 $(this).next('span').stop().fadeIn('slow');
@@ -58,7 +58,7 @@ $(document).ready(function(){
         }
     });
 
-//----------------²à±ßÀ¸ÊéÇ©ÔÚÊó±êĞüÍ£¼°½øÈëÊ±µÄ¶îÑÕÉ«±ä»¯---------------------//
+//----------------ä¾§è¾¹æ ä¹¦ç­¾åœ¨é¼ æ ‡æ‚¬åœåŠè¿›å…¥æ—¶çš„é¢é¢œè‰²å˜åŒ–---------------------//
     $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
@@ -76,7 +76,7 @@ $(document).ready(function(){
         }
     });
 
-//------------------------------Òş²ØÒÔ¼°µã»÷Ê±Ìí¼ÓÆÀÂÛÇø----------------------//
+//------------------------------éšè—ä»¥åŠç‚¹å‡»æ—¶æ·»åŠ è¯„è®ºåŒº----------------------//
     $('#show_disqus').click(function(){
         var $comment=$(this).parent('div.comment');
         var html='';
@@ -96,7 +96,7 @@ $(document).ready(function(){
         },300);
     });
 
-//------------------------------ÆÀÂÛÇøµÄÑÕÉ«±ä»¯----------------------//
+//------------------------------è¯„è®ºåŒºçš„é¢œè‰²å˜åŒ–----------------------//
     $('#show_disqus div.center').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
@@ -114,7 +114,7 @@ $(document).ready(function(){
         }
     });
 
-//------------------------------·ÖÒ³ÇøµÄÑÕÉ«±ä»¯----------------------//
+//------------------------------åˆ†é¡µåŒºçš„é¢œè‰²å˜åŒ–----------------------//
     $('div.fenye div').on('mouseenter mouseleave',function(event) {
         if(!$(this).hasClass("active")){
             if(event.type=='mouseenter'){
@@ -134,7 +134,7 @@ $(document).ready(function(){
         }
     });
 
-//----------------------²à±ßÀ¸ÏìÓ¦¹ö¶¯ÌõµÄ»¬¶¯Ğ§¹û----------------//
+//----------------------ä¾§è¾¹æ å“åº”æ»šåŠ¨æ¡çš„æ»‘åŠ¨æ•ˆæœ----------------//
     var divTop=60;
     $(window).scroll(function(){
         var offsetop;//$('div.sidebar-outline').offset().top;
@@ -159,14 +159,14 @@ $(document).ready(function(){
         }
     });
 
-//----------------------×ó²àÊ±¼ä±êÇ©µÄÑÕÉ«ĞÅÏ¢----------------//
+//----------------------å·¦ä¾§æ—¶é—´æ ‡ç­¾çš„é¢œè‰²ä¿¡æ¯-----------------//
     if($('div.fenye div').hasClass("home")){
         $('div.post-outline:nth-child(1) div.array-right').addClass("latest1");
         $('div.post-outline:nth-child(3) div.array-right').addClass("latest2");
         $('div.post-outline:nth-child(5) div.array-right').addClass("latest3");
     }
 
-//--------------------Ò³ÃæÓÒÏÂ½ÇµÄupÍ¼±ê£¬Ö±´ïÒ³Ãæ¶¥²¿--------------------//
+//--------------------é¡µé¢å³ä¸‹è§’çš„upå›¾æ ‡ï¼Œç›´è¾¾é¡µé¢é¡¶éƒ¨--------------------//
     if($(window).width()>=960){
         $('<span class="icon glyphicon glyphicon-arrow-up"></span>').insertAfter($('body #wrap')).hide();
         var view_width=$(window).width();
@@ -221,12 +221,48 @@ $(document).ready(function(){
     });
 });
 
+//--------------------ä¾§è¾¹æ æœç´¢åŠŸèƒ½çš„å®ç°ï¼Œåˆ©ç”¨ajax--------------------//
+var json;
 $(document).ready(function(){
-//--------------------ÌØ¶¨ÀàËÑË÷¹¦ÄÜµÄÊµÏÖ£¬»ùÓÚajax--------------------//
     $.ajax({
         url: 'search.txt',
         success: function(data) {
-            alert(data);
+            json=JSON.parse(data);
         }
     });
+
+    function showCategory(text){
+        for(var i= 0,len=json.length;i<len;i++){
+            if(text==json[i]["c"]){
+                var html="";
+                for(var j=0,num=json[i]["s"];j<num;j++){
+                    html+='<div class="post-outline"><div class="post-array"><div class="array-left"><div class="post-header">';
+                    html+='<a href="';
+                    html+=json[i]["a"][j][0]+'">'+json[i]["a"][j][1]+'</a></div> <div class="tags">';
+                    var arr=json[i]["a"][j][2].toString().split(",");
+                    for(var m= 0,n=arr.length;m<n;m++){
+                        html+='<span class="label label-primary">'+arr[m]+"</span>";
+                    }
+                    html+='</div></div><div class="array-right">'+json[i]["a"][j][3];
+                    html+='</div></div><div class="post-description">';
+                    html+=json[i]["a"][j][4];
+                    html+='</div> </div>';
+                }
+                return html;
+            }
+        }
+        return "";
+    }
+
+    $('div.click').on("click",function(){
+        if(json!=undefined){
+            var text=$(this).find("div.per-first").text();
+            var html=showCategory(text);
+            var blog=document.querySelector('div.blog-outline');
+            blog.innerHTML=html;
+            $('div.blog-outline div.post-outline div.post-header a').each(function(){
+                $('<span class="icon fa fa-book"></span>').insertAfter(this).hide();
+            });
+        }
+    })
 });
