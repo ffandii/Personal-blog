@@ -220,3 +220,13 @@ $(document).ready(function(){
         $('body,html').stop().animate({scrollTop:0},500);
     });
 });
+
+$(document).ready(function(){
+//--------------------特定类搜索功能的实现，基于ajax--------------------//
+    $.ajax({
+        url: 'search.txt',
+        success: function(data) {
+            alert(data);
+        }
+    });
+});
