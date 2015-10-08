@@ -226,7 +226,6 @@ $(document).ready(function(){
     $.ajax({
         url: 'search.txt',
         success: function(data) {
-            alert(data);
         }
     });
 });
