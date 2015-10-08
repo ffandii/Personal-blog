@@ -1,5 +1,4 @@
 ---
 layout: null
 ---
-{% include JB/setup %}
-{% for post in site.posts %}<div><title>{{ post.title }}</title><url>{{ site.url }}{{ post.url }}</url><date>{{ post.date | date_to_utc | date: '%Y-%m-%d'}}</date></div>{% endfor %}
+{% include JB/setup %}'[{% for category in site.categories %}{"c":"{{ category | first }}","s":{{ category | last | size }},"a":[{% for post in category.last %}["{{ post.url }}","{{ post.title }}","{% for item in post.tags %}{{item}}@{% endfor %}","{{ post.date | date:"%Y/%m/%d"}}","{{post.description}}"]{% if forloop.last == false %},{% else %}{% endif %} {% endfor %}]}{% if forloop.last == false %},{% else %}{% endif %}{% endfor %}]'
