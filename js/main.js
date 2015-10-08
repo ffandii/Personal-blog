@@ -221,9 +221,9 @@ $(document).ready(function(){
     });
 });
 
+var json,html;   //单击后插入到主页的html代码段
 $(document).ready(function(){
 //--------------------特定类搜索功能的实现，基于ajax--------------------//
-    var json,html;   //单击后插入到主页的html代码段
     $.ajax({
         url: 'search.txt',
         success: function(data) {
