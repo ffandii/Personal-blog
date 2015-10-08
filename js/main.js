@@ -221,40 +221,12 @@ $(document).ready(function(){
     });
 });
 
-var json,html;   //单击后插入到主页的html代码段
 $(document).ready(function(){
 //--------------------特定类搜索功能的实现，基于ajax--------------------//
     $.ajax({
         url: 'search.txt',
         success: function(data) {
-            JSON.parse(data);
+            alert(JSON.parse(data));
         }
-    });
-    function showCategory(text){
-        for(var i= 0,len=data.length;i<len;i++){
-            if(text==json[i]["c"]){
-                var html="";
-                for(var j=0,num=json[i]["s"];j<num;j++){
-                    html+='<div class="post-outline"><div class="post-array"><div class="array-left"><div class="post-header">';
-                    html+='<a href="';
-                    html+=json[i]["a"][j][0]+'">'+json[i]["a"][j][1]+'</a></div> <div class="tags">';
-                    var arr=json[i]["a"][j][2].toString().split(",");
-                    for(var m= 0,n=arr.length;m<n;m++){
-                        html+='<span class="label label-primary">'+arr[m]+"</span>";
-                    }
-                    html+='</div></div><div class="array-right">'+json[i]["a"][j][3];
-                    html+='</div></div><div class="post-description">';
-                    html+=json[i]["a"][j][4];
-                    html+='</div> </div>';
-                }
-                return html;
-            }
-        }
-        return "";
-    }
-
-    $('div.click').on("click",function(){
-        var text=$(this).find("div.per-first").text();
-        alert(text);
     });
 });
