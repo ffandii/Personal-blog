@@ -57,7 +57,7 @@ $(document).ready(function(){
     $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                backgroundColor: "#f6f6f6"
+                backgroundColor: "#dbedec"
             },{
                 duration: "fast"
             });
@@ -196,7 +196,7 @@ $(document).ready(function(){
 });
 
 //--------------------侧边栏搜索功能的实现，利用ajax--------------------//
-var json;
+var json,lastText="",lastNum=0;
 $(document).ready(function(){
     $.ajax({
         url: 'search.txt',
@@ -231,14 +231,18 @@ $(document).ready(function(){
     $('div.click').on("click",function(){
         if(json!=undefined){
             var text=$(this).find("div.per-first").text();
-            var html=showCategory(text);
-            var blog=$('div.blog-outline');
-            blog.slideUp(150,function(){
-                $(this).html(html).hide().slideDown(400);
-            });
-            $('div.blog-outline div.post-outline div.post-header a').each(function(){
-                $('<span class="icon fa fa-book"></span>').insertAfter(this).hide();
-            });
+            if(lastText==""||lastText!=text){
+                lastText=text;
+                var html=showCategory(text);
+                var blog=$('div.blog-outline');
+                blog.slideUp(150,function(){
+                    $(this).html(html).hide().slideDown(400,function(){
+                        $('div.blog-outline div.post-outline div.post-header a').each(function(){
+                            $('<span class="icon fa fa-book"></span>').insertAfter(this).hide();
+                        });
+                    });
+                });
+            }
         }
     })
 });
