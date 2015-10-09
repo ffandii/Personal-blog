@@ -11,12 +11,7 @@ $(document).ready(function(){
 
     //blog-outline部分的分割线
     $('div.blog-outline div.gap-line:nth-last-child(1)').remove();
-
-//------------------侧边栏的展开和折叠--------------------------
-    $('div.cell').on('click', function() {
-
-    });
-
+//------------------计数跳动--------------------------
     $('div.cell').on('mouseenter',function(){
 
         var $details=$(this).find('span');
@@ -96,8 +91,8 @@ $(document).ready(function(){
         },300);
     });
 
-//------------------------------评论区的颜色变化----------------------//
-    $('#show_disqus div.center').on('mouseenter mouseleave',function(event) {
+//------------------------------评论区的颜色变化,分页区的颜色变化----------------------//
+    $('#show_disqus div.center,div.fenye div').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
                 color: "#b47160"
@@ -113,27 +108,6 @@ $(document).ready(function(){
             });
         }
     });
-
-//------------------------------分页区的颜色变化----------------------//
-    $('div.fenye div').on('mouseenter mouseleave',function(event) {
-        if(!$(this).hasClass("active")){
-            if(event.type=='mouseenter'){
-                $(this).stop().animate({
-                    backgroundColor: "#b47160"
-                },{
-                    duration: 400
-                });
-            }
-            else {
-                $(this).stop().animate({
-                    backgroundColor: "#60acb4"
-                },{
-                    duration: 400
-                });
-            }
-        }
-    });
-
 //----------------------侧边栏响应滚动条的滑动效果----------------//
     var divTop=60;
     $(window).scroll(function(){
