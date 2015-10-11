@@ -1,4 +1,4 @@
 ---
 layout: null
 ---
-{% include JB/setup %}[{% for category in site.categories %}{"c":"{{ category | first }}","s":{{ category | last | size }},"a":[{% for post in category.last %}["{{ post.url }}","{{ post.title }}","{% for item in post.tags %}{{item}}{% if forloop.last == false %},{% else %}{% endif %}{% endfor %}","{{ post.date | date:"%Y/%m/%d"}}","{{post.description}}"]{% if forloop.last == false %},{% else %}{% endif %} {% endfor %}]}{% if forloop.last == false %},{% else %}{% endif %}{% endfor %}]
+{% include JB/setup %}[{% for category in site.categories %}{"c":"{{ category | first }}","s":{{ category | last | size }},"a":[{% for post in category.last %}["{{site.production_url}}/Personal-blog/{{ post.url }}","{{ post.title }}","{% for item in post.tags %}{{item}}{% if forloop.last == false %},{% else %}{% endif %}{% endfor %}","{{ post.date | date:"%Y/%m/%d"}}","{{post.description}}"]{% if forloop.last == false %},{% else %}{% endif %} {% endfor %}]}{% if forloop.last == false %},{% else %}{% endif %}{% endfor %}]
