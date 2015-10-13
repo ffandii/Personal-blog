@@ -57,6 +57,57 @@ function second(){
    first();
 }
 </code></pre>	
+
+	<p>大多数调用栈错误都与这两种模式有关，最常见的导致栈溢出的原因是不正确的终止条件，因此定位模式错误的第一步是验证终止条件，如果终止条件没问题，那么可能是
+	算法中包含了太多层的递归，为了能在浏览器中安全地执行，建议改用迭代、Memoization或者两者的结合。
+	</p>
+	<p>任何递归能实现的算法也可以用同样的迭代来实现。迭代算法通常包含几个不同的循环分别对应计算过程的几个不同的方面，这也会引入它们自身的性能问题。然而优化
+	后的循环替代长时间运行的递归函数可以提升性能，因为运行一个循环要比反复调用一个函数的开销少的多。例如合并排序算法是最常见的用递归实现的算法：</p>
+<pre><code class="javascript">//递归实现的合并排序算法
+function merge(left,right){
+   var result=[];
+   while(left.length>0&&right.length>0){
+      if(left[0]<right[0]){
+	     result.push(left.shift());
+	  }
+	  else {
+	     result.push(right.shift());
+	  }
+   }
+   return result.concat(left).concat(right);
+}
+
+function mergeSort(items){
+   if(items.length==1){
+      return items;
+   }
+   var middle=Math.floor(items.length/2);
+   left=items.slice(0,middle);
+   right=items.slice(middle);
+   return merge(mergeSoft(left),mergeSoft(right));
+}
+</code></pre>
+
+	<p>这段合并排序的代码相当直观，但是mergeSoft()函数会导致很频繁的自调用，一个长度为n的数组最终会调用<code>mergeSoft()</code>2*n-1次，这意味着一个长度超过1500
+	的数组会在firefox上发生栈溢出错误。迭代实现如下：</p>
+<pre><code class="javascript">function mergeSoft(items){
+   if(items.length==1){
+      return items;
+   }
+   var work=[];
+   for(var i=0,len=items.length;i<len;i++){
+      work[i].push([items[i]]);
+   }
+   work.push();  //如果数组长度为奇数
+   for(var lim=len,lim>1,lim=(lim+1)/2){
+      for(var j=0,k=0;k<lim;j++,k+=2){
+	     work[j]=merge(work[k],work[k+1]);
+	  }
+	  work[j]=[]; //如果数组长度为奇数
+   }
+   return work[0];
+}
+</code></pre>
 </div>
 
 
