@@ -98,7 +98,7 @@
 							<div class="fenye">	
 								{% if paginator.total_pages > 1 %}  
 									{% if paginator.previous_page %}  
-									<div class="fenye-link"><a href="{{site.production_url}}/Personal-blog/{{ paginator.previous_page_path }}">上一页</a></div>  
+									<div class="fenye-link"><a href="{{site.production_url}}/Personal-blog{{ paginator.previous_page_path }}">上一页</a></div>  
 									{% endif %} 
 
 									{% for page in (1..paginator.total_pages) %}  
@@ -116,7 +116,7 @@
 									{% endfor %} 
       
 									{% if paginator.next_page %}  
-									<div class="fenye-link"><a href="{{site.production_url}}/Personal-blog/{{ paginator.next_page_path }}">下一页</a></div>
+									<div class="fenye-link"><a href="{{site.production_url}}/Personal-blog{{ paginator.next_page_path }}">下一页</a></div>
 										{% endif %}  
 								{% else %} 
 									<div class="home"></div>
