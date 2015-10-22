@@ -111,7 +111,7 @@ $(document).ready(function(){
 
 //------------------------------分页区的颜色变化----------------------//
     $('div.fenye div').on('mouseenter mouseleave',function(event) {
-        if(!$(this).hasClass("active")){
+        if(!$(this).parent().hasClass("active")){
             if(event.type=='mouseenter'){
                 $(this).stop().animate({
                     backgroundColor: "#b47160"

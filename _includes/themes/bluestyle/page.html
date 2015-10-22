@@ -104,12 +104,12 @@
 									{% for page in (1..paginator.total_pages) %}  
 										{% if page == paginator.page %}
 											{% if page == 1 %} 
-												<a href="{{site.production_url}}/Personal-blog/index.html">
-													<div class="fenye-a active home">{{ page }}</div>
+												<a href="{{site.production_url}}/Personal-blog/index.html" class="active">
+													<div class="fenye-a home">{{ page }}</div>
 												</a>	
 											{% else %}  
-												<a href="{{site.production_url}}/Personal-blog/{{ site.paginate_path | replace: ':num',page }}">
-													<div class="fenye-a active">{{ page }}</div> 
+												<a href="{{site.production_url}}/Personal-blog/{{ site.paginate_path | replace: ':num',page }}" class="active">
+													<div class="fenye-a">{{ page }}</div> 
 												</a>
 											{% endif %}  
 										{% elsif page == 1 %} 
