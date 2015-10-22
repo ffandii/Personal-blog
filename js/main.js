@@ -92,7 +92,7 @@ $(document).ready(function(){
     });
 
 //------------------------------评论区的颜色变化,分页区的颜色变化----------------------//
-    $('#show_disqus div.center,div.fenye div').on('mouseenter mouseleave',function(event) {
+    $('#show_disqus div.center').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
                 color: "#b47160"
@@ -220,7 +220,7 @@ $(document).ready(function(){
 var json,lastText="",lastNum=0;
 $(document).ready(function(){
     $.ajax({
-        url: 'search.txt',
+        url: 'http://ffandii.github.io/Personal-blog/search.txt',
         success: function(data) {
             json=JSON.parse(data);
         }
