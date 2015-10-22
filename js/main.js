@@ -108,6 +108,28 @@ $(document).ready(function(){
             });
         }
     });
+
+//------------------------------分页区的颜色变化----------------------//
+    $('div.fenye div').on('mouseenter mouseleave',function(event) {
+        if(!$(this).hasClass("active")){
+            if(event.type=='mouseenter'){
+                $(this).stop().animate({
+                    backgroundColor: "#b47160"
+                },{
+                    duration: 400
+                });
+            }
+            else {
+                $(this).stop().animate({
+                    backgroundColor: "#60acb4"
+                },{
+                    duration: 400
+                });
+            }
+        }
+    });
+
+
 //----------------------侧边栏响应滚动条的滑动效果----------------//
     var divTop=60;
     $(window).scroll(function(){
