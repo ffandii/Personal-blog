@@ -129,7 +129,6 @@ $(document).ready(function(){
         }
     });
 
-
 //----------------------侧边栏响应滚动条的滑动效果----------------//
     var divTop=60;
     $(window).scroll(function(){
