@@ -98,25 +98,25 @@
 							<div class="fenye">	
 								{% if paginator.total_pages > 1 %}  
 									{% if paginator.previous_page %}  
-									<div class="fenye-link"><a href="{{ paginator.previous_page_path }}">上一页</a></div>  
+									<div class="fenye-link"><a href="{{site.production_url}}/Personal-blog/{{ paginator.previous_page_path }}">上一页</a></div>  
 									{% endif %} 
 
 									{% for page in (1..paginator.total_pages) %}  
 										{% if page == paginator.page %}
 											{% if page == 1 %} 
-												<div class="fenye-a active home"><a href="/index.html">{{ page }}</a></div> 
+												<div class="fenye-a active home"><a href="{{site.production_url}}/Personal-blog//index.html">{{ page }}</a></div> 
 											{% else %}  
-												<div class="fenye-a active"><a href="{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div> 
+												<div class="fenye-a active"><a href="{{site.production_url}}/Personal-blog/{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div> 
 											{% endif %}  
 										{% else if page == 1 %}  
-									<div class="fenye-a"><a href="/index.html">{{ page }}</a></div> 
+									<div class="fenye-a"><a href="{{site.production_url}}/Personal-blog/index.html">{{ page }}</a></div> 
 										{% else %}  
-									<div class="fenye-a"><a href="{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div>  
+									<div class="fenye-a"><a href="{{site.production_url}}/Personal-blog/{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div>  
 										{% endif %}  
 									{% endfor %} 
       
 									{% if paginator.next_page %}  
-									<div class="fenye-link"><a href="{{ paginator.next_page_path }}">下一页</a></div>
+									<div class="fenye-link"><a href="{{site.production_url}}/Personal-blog/{{ paginator.next_page_path }}">下一页</a></div>
 										{% endif %}  
 								{% else %} 
 									<div class="home"></div>
