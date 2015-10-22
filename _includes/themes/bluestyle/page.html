@@ -104,7 +104,7 @@
 									{% for page in (1..paginator.total_pages) %}  
 										{% if page == paginator.page %}
 											{% if page == 1 %} 
-												<div class="fenye-a active home"><a href="{{site.production_url}}/Personal-blog//index.html">{{ page }}</a></div> 
+												<div class="fenye-a active home"><a href="{{site.production_url}}/Personal-blog/index.html">{{ page }}</a></div> 
 											{% else %}  
 												<div class="fenye-a active"><a href="{{site.production_url}}/Personal-blog/{{ site.paginate_path | replace: ':num',page }}">{{ page }}</a></div> 
 											{% endif %}  
