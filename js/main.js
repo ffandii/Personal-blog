@@ -220,7 +220,7 @@ $(document).ready(function(){
 var json,lastText="",lastNum=0;
 $(document).ready(function(){
     $.ajax({
-        url: 'http://ffandii.github.io/Personal-blog/search.txt',
+        url: 'search.txt',
         success: function(data) {
             json=JSON.parse(data);
         }
