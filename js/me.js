@@ -30,6 +30,7 @@ $(document).ready(function(){
             $(this).attr("width",Math.round(imageWidth).toString());
             $(this).attr("height",Math.round(imageHeight).toString());
         });
+
         $('div.basic-information div.right-basic').css({
             marginTop: 32*(widthRate+rate)+'px'
         });
