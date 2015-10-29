@@ -57,7 +57,7 @@ $(document).ready(function(){
     $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
         if(event.type=='mouseenter'){
             $(this).stop().animate({
-                backgroundColor: "#dbedec"
+                backgroundColor: "#eaeaea"
             },{
                 duration: "fast"
             });
@@ -211,5 +211,39 @@ $(document).ready(function(){
                 });
             }
         }
-    })
+    });
+
+    var width; //窗口宽度
+
+    function regulateImage() {
+        width = $(window).width();
+        if(width<976){
+            $('body').css({
+                'background-size': "0px 0px,186px,186px"
+            });
+        }
+        else {
+            if(width>=1400) {
+                $('body').css({
+                    'background-size': "400px 308px,186px,186px"
+                });
+            }
+            else if(width>=1200) {
+                $('body').css({
+                    'background-size': "320px 246px,186px,186px"
+                });
+            }
+            else {
+                $('body').css({
+                    'background-size': "280px 216px,186px,186px"
+                });
+            }
+        }
+    }
+
+    regulateImage();
+
+    $(window).on("resize",function(){
+        regulateImage();
+    });
 });
