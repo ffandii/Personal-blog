@@ -160,60 +160,6 @@ $(document).ready(function(){
         $('div.post-outline:nth-child(3) div.array-right').addClass("latest2");
         $('div.post-outline:nth-child(5) div.array-right').addClass("latest3");
     }
-
-//--------------------页面右下角的up图标，直达页面顶部--------------------//
-    if($(window).width()>=960){
-        $('<span class="icon glyphicon glyphicon-arrow-up"></span>').insertAfter($('body #wrap')).hide();
-        var view_width=$(window).width();
-        var view_height=$(window).height();
-        $('body>span.icon').css({
-            'left': (view_width-120)+"px",
-            'top': (view_height-120)+"px"
-        });
-    }
-
-    $(window).on("resize",function(){
-        if($(window).width()>=960){
-            var view_width=$(window).width();
-            var view_height=$(window).height();
-            $('body>span.icon').css({
-                'left': (view_width-120)+"px",
-                'top': (view_height-120)+"px"
-            });
-        }
-    });
-
-    $(window).scroll(function(){
-        if($(window).scrollTop()>0){
-            $('body>span.icon').stop().fadeIn('slow');
-        }
-        else {
-            $('body>span.icon').stop().fadeOut('slow');
-        }
-    });
-
-    $('body>span.icon').on('mouseenter mouseleave',function(event){
-        if(event.type=="mouseenter"){
-            $(this).stop().animate({
-                backgroundColor: "#d9dad5",
-                color: "#bbbcb7"
-            },{
-                duration: 400
-            });
-        }
-        else {
-            $(this).stop().animate({
-                backgroundColor: "#e8e8e5",
-                color: "#cacbc7"
-            },{
-                duration: 400
-            });
-        }
-    });
-
-    $('body>span.icon').on('click',function(){
-        $('body,html').stop().animate({scrollTop:0},500);
-    });
 });
 
 //--------------------侧边栏搜索功能的实现，利用ajax--------------------//
