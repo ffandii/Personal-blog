@@ -53,24 +53,6 @@ $(document).ready(function(){
         }
     });
 
-//----------------侧边栏书签在鼠标悬停及进入时的额颜色变化---------------------//
-    $('div.blog-side-bar div.cell').on('mouseenter mouseleave',function(event) {
-        if(event.type=='mouseenter'){
-            $(this).stop().animate({
-                backgroundColor: "#eaeaea"
-            },{
-                duration: "fast"
-            });
-        }
-        else {
-            $(this).stop().animate({
-                backgroundColor: "#ffffff"
-            },{
-                duration: "fast"
-            });
-        }
-    });
-
 //------------------------------隐藏以及点击时添加评论区----------------------//
     $('#show_disqus').click(function(){
         var $comment=$(this).parent('div.comment');
