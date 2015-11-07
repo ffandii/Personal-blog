@@ -56,4 +56,29 @@ tags: [CSS,布局模式]
 	<p>侧轴对齐：包括两种，一种是<code>align-items</code>属性，可以用来设置伸缩容器中包括匿名伸缩项目的所有项目的对齐方式；另一种为<code>align-self</code>属性，主要用来在单独的伸缩项目上覆写默认的对齐方式，对于匿名的伸缩项目，<code>align-self</code>的值永远与其关联的伸缩容器的<code>align-items</code>的值相同。</p>
 	<p>伸缩性：定义伸缩项目可以改变它们的宽度或高度填补可用的空间。可以将伸缩容器的额外空间分发给其伸缩项目（与伸缩项目的真弹性成正比）或将它们缩小以防止伸缩项目的溢出。</p>
 	<p>伸缩行：伸缩项目沿着伸缩容器内的一个伸缩行定位，伸缩容器可以是单行的，也可以是多行的。其主要由<code>flex-wrap</code>属性决定。每一个伸缩行至少包含一个伸缩项目。</p>
+	<h4>旧版本Flexbox模型浏览器的支持情况。</h4>
+	<div class="browser">
+        <table class="browser">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th><img src="../../../../../images/post/css/ie.png" width="32" height="32" /></th>
+                    <th><img src="../../../../../images/post/css/firefox.png" width="32" height="32" /></th>
+                    <th><img src="../../../../../images/post/css/Chrome.png" width="32" height="32" /></th>
+                    <th><img src="../../../../../images/post/css/Opera.png" width="32" height="32" /></th>
+                    <th><img src="../../../../../images/post/css/Safari.png" width="32" height="32" /></th>
+                </tr>
+            </thead>
+			<tbody>
+				<tr>
+					<td>Flexbox</td>
+					<td>×</td>
+					<td>2~21√</td>
+					<td>4~20√</td>
+					<td>×</td>
+					<td>3.1~6√</td>
+				</tr>
+			</tbody>
+        </table>
+    </div>
 </div>
