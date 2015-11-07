@@ -48,5 +48,5 @@ tags: [CSS,布局模式]
 	<p>通过<code>display</code>属性，可以显式的给一个元素设置为<code>flex</code>或者<code>inline-flex</code>，这个容器就是一个伸缩容器。伸缩容器会为其内容创立新的伸缩
 	格式化上下文，其中设置为<code>flex</code>的容器会被渲染为一个块级元素，而被设置为<code>inline-flex</code>的容器则被渲染为一个行内元素。若元素<code>display</code>
 	的指定值是<code>inline-flex</code>切=且元素为一个浮动或绝对定位元素，则<code>display</code>的计算值为<code>flex</code>。</p>
-	<h4>伸缩容器的属性</h4>
+	<h4>伸缩容器的属性</h4> 
 </div>
