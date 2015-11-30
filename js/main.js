@@ -175,7 +175,22 @@ $(document).ready(function(){
                     html+=json[i]["a"][j][4];
                     html+='</div> </div>';
                 }
-                console.log(num);
+
+                if(num<=spaceNum){
+                } else {
+                    if(clicked==false){
+                        link+="<a href='#' class='link active'><div class='fenye-a'>1</div></a>";
+                        for(i=1,j=Math.floor(num/spaceNum);i<=j;i++){
+                            link+="<a href='#' class='link'><div class='fenye-a'>"+(i+1)+"</div></a>";
+                        }
+                        link+="<a href='#'><div class='fenye-link'>下一页</div></a>";
+                    }
+                }
+
+                console.log(link);
+
+                $("div.fenye").html(link);  //更新分页信息
+
                 return html;
             }
         }
