@@ -155,7 +155,7 @@ $(document).ready(function(){
     });
 
     function showCategory(text){
-        var left,right,link="";
+        var left,right,link="",value;
         if(clicked==false){
             left=0;right=spaceNum;
         }
@@ -170,10 +170,17 @@ $(document).ready(function(){
                     for(var m= 0,n=arr.length;m<n;m++){
                         html+='<span class="label label-primary">'+arr[m]+"</span>";
                     }
-                    html+='</div></div><div class="array-right">'+json[i]["a"][j][3];
+                    html+='</div></div><div class="array-right';
+                    value=j==0?" latest1":(j==1?" latest2":(j==2?" latest3":""));
+                    html+=value;
+                    html+='">';
+                    html+=json[i]["a"][j][3];
                     html+='</div></div><div class="post-description">';
                     html+=json[i]["a"][j][4];
                     html+='</div> </div>';
+                    if(j<num-1){
+                        html+='<div class="gap-line"></div>';
+                    }
                 }
 
                 if(num<=spaceNum){
@@ -183,11 +190,9 @@ $(document).ready(function(){
                         for(i=1,j=Math.floor(num/spaceNum);i<=j;i++){
                             link+="<a href='#' class='link'><div class='fenye-a'>"+(i+1)+"</div></a>";
                         }
-                        link+="<a href='#'><div class='fenye-link'>下一页</div></a>";
+                        link+="<a href='#' class='link'><div class='fenye-link'>下一页</div></a>";
                     }
                 }
-
-                console.log(link);
 
                 $("div.fenye").html(link);  //更新分页信息
 
@@ -215,28 +220,37 @@ $(document).ready(function(){
         }
     });
 
+/*
+    $("div.fenye div.link").on("click",function(){
+        clicked=true;
+        var value=$(this).find("div")
+    });*/
+
     var width; //窗口宽度
 
     function regulateImage() {
         width = $(window).width();
-        if(width<976){
-            $('body').css({
+        var $body=$('body');
+        var fixW;
+        if(width<976){  //rate 308/400
+            $body.removeClass().css({
                 'background-size': "0px 0px,186px,186px"
             });
         }
         else {
-            if(width>=1400) {
-                $('body').css({
-                    'background-size': "400px 308px,186px,186px"
+            if(width>1382) {
+                fixW=Math.floor(360+(width-1664)*0.2614);
+                $body.removeClass().css({
+                    'background-size': fixW+'px '+ Math.floor(277*fixW/360)+'px,186px,186px'
                 });
             }
-            else if(width>=1200) {
-                $('body').css({
+            else if(width>1200) {
+                $body.removeClass().css({
                     'background-size': "320px 246px,186px,186px"
                 });
             }
             else {
-                $('body').css({
+                $body.removeClass().addClass("mode1").css({
                     'background-size': "280px 216px,186px,186px"
                 });
             }
