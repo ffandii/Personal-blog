@@ -2,8 +2,8 @@
 layout: post
 title: Cookie和Session
 description: "在web应用中，请求路径和查询字符串对业务至关重要，通过它们可以进行很多业务操作了，但是HTTP是一个无协议的状态，现实中的业务确实需要一定的状态的，否者无法区分用户之间的身份。"
-category: node
-tags: [cookie,session]
+category: MEAN框架
+tags: [cookie,session,node]
 ---
 {% include JB/setup %}
 
