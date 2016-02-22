@@ -9,7 +9,7 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); //导航栏的提示框
 
     //项目区的颜色变化
-    $('div.project a').on('mouseenter mouseleave',function(event){
+    $('div.project a, div.right-basic a').on('mouseenter mouseleave',function(event){
         console.log("Yes");
         if(event.type=='mouseenter'){
             $(this).stop().animate({
