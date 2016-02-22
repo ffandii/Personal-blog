@@ -8,6 +8,25 @@ $('div.body-contents img').each(function(index){
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); //导航栏的提示框
 
+    //项目区的颜色变化
+    $('div.project a').on('mouseenter mouseleave',function(event){
+        console.log("Yes");
+        if(event.type=='mouseenter'){
+            $(this).stop().animate({
+                color: "#b47160"
+            },{
+                duration: 300
+            });
+        }
+        else {
+            $(this).stop().animate({
+                color: "#60acb4"
+            },{
+                duration: 300
+            });
+        }
+    });
+
     //左侧图片区域的缩放
     var widthRate,rate;
     function regulateImage(){
