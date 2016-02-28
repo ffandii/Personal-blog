@@ -1,4 +1,7 @@
 jQuery(document).ready(function($){
+
+	$('[data-toggle="tooltip"]').tooltip();
+
 	var timelineBlocks = $('.cd-timeline-block'),
 		offset = 0.8;
 
