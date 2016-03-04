@@ -115,12 +115,12 @@
 						<div class="post-part2">
 								<ul class="pagination">
 									{% if page.previous %}
-									  <li class="prev"><a href="http://ffandii.github.io/{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}"><span class="icon fa fa-arrow-left"></span></a></li>
+									  <li class="prev"><a href="http://ffandii.github.io{{ BASE_PATH }}/{{ page.previous.url }}" title="{{ page.previous.title }}"><span class="icon fa fa-arrow-left"></span></a></li>
 									{% else %}
 									  <li class="prev disabled"><a><span class="icon fa fa-arrow-left"></span></a></li>
 									{% endif %}
 									{% if page.next %}
-									  <li class="next"><a href="http://ffandii.github.io/{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}"><span class="icon fa fa-arrow-right"></span></a></li>
+									  <li class="next"><a href="http://ffandii.github.io{{ BASE_PATH }}/{{ page.next.url }}" title="{{ page.next.title }}"><span class="icon fa fa-arrow-right"></span></a></li>
 									{% else %}
 									  <li class="next disabled"><a><span class="icon fa fa-arrow-right"></span></a>
 									{% endif %}
