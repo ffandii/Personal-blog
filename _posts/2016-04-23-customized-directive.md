@@ -32,5 +32,42 @@ tags: [AngularJS]
 	<h3>指令的编译生命周期</h3>
 	<p>当AngularJS编译一个HTML模板时，它会遍历浏览器提供的DOM树，尝试参照已注册的指令集来匹配每个元素、属性、注释及CSS类。每当匹配一个指令时，AngularJS就会调用该指令的编译函数，该函数会返回一个链接函数。AngularJS会收集所有的链接函数。编译工作是在作用域创建之前进行的，所以在编译函数中没有任何可用的作用域数据。一旦所有指令编译完成，AngularJS就会创建作用域，然后通过调用每个指令的链接函数将指令和作用域连接起来。在连接阶段，作用域已经附加到指令上了，所以链接函数可以将作用域和DOM绑定起来。</p>
 	<p>编译阶段通常做一些优化工作。有可能指令的几乎所有工作都会在链接函数中完成（除了一些高级任务，如访问嵌入函数）。而对于重复指令（如<code>ng-repeat</code>内部），指令的编译函数只会被调用一次，但链接函数在每次迭代时都会被调用，每次迭代对应的数据也会随之变化。</p>
-	
+	<p>下表展示了AngularJS的编译器在匹配指令时所调用的编译函数，可以看到模板中每个指令所对应的编译函数都只被调用了一次：</p>
+	<div class="browser">
+        <table class="browser">
+            <thead>
+                <tr>
+                    <th>模板</th>
+                    <th>编译步骤</th>
+                </tr>
+            </thead>
+			<tbody>
+				<tr>
+					<td>&lt;ul my-dir&gt;<br>&lt;li ng-repeat="obj in objs" my-dir&gt;<br>&lt;/li&gt;<br>&lt;/ui&gt;</td>
+					<td>myDir编译函数<br>ngRepeat编译函数<br>myDir编译函数</td>
+				</tr>
+				<tr>
+				</tr>
+			</tbody>
+        </table>
+    </div>
+	<p>下表则展示了模板转义为最终的HTML时所调用的链接函数。可以看到在重复指令的每一次迭代中都会调用链接函数。如果指令中有一些不依赖于作用域数据的复杂功能，那么这些功能应该放在编译函数中，这样功能就只会被调用一次。</p>
+	<div class="browser">
+        <table class="browser">
+            <thead>
+                <tr>
+                    <th>HTML</th>
+                    <th>链接步骤</th>
+                </tr>
+            </thead>
+			<tbody>
+				<tr>
+					<td>&lt;ul my-dir&gt;<br>&lt;-- ng-repeat="obj in objs" --&gt;<br>&lt;li my-dir&gt;&lt;/li&gt;<br>&lt;li my-dir&gt;&lt;/li&gt;<br>&lt;li my-dir&gt;&lt;/li&gt;<br>&lt;/ui&gt;</td>
+					<td>myDir链接函数<br>ngRepeat链接函数<br>myDir链接函数<br>myDir链接函数<br>myDir链接函数</td>
+				</tr>
+				<tr>
+				</tr>
+			</tbody>
+        </table>
+    </div>
 </div>
