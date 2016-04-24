@@ -291,5 +291,50 @@ scope.isolated3 = function(locals){
    
 };
 </code></pre>
-	<p></p>链接函数在<code>numPages</code>属性上添加了一个监视，还为独立作用域增添了各种在指令模板中使用的辅助函数。
+	<p>链接函数在<code>numPages</code>属性上添加了一个监视，还为独立作用域增添了各种在指令模板中使用的辅助函数。</p>
 </div>
+
+<div class="p-section">
+	<h3>需要其他指令的控制器</h3>
+	<p>验证指令需要访问ngModelController，ngModelController是<code>ng-model</code>指令的控制器。可以在定义的require字段中指定需要的控制器。这个字段可以接受字符串或字符串数组。每个字符串必须是所需控制器的指令名称。当所需要的指令被找到之后，该指令的控制器会被注入自定义指令的链接函数，作为第四个参数：</p>
+<pre><code class="javascript">require : 'ngModel',
+link: function(scope, element, attrs, ngModelController) {}
+</code></pre>	
+	<p>如果需要多个控制器，第四个参数将会是有多个控制器组成的数组。<code>require</code>字段中的控制器可以设置为可选，方式是在指令前加上一个'?'，如<code>require: '?ngMode'</code>。这样，如果指令不存在，那么第四个参数将会是null。如果允许所需要的控制器存在于当前元素上，或者也可以存在于当前元素的祖先元素之上，可以在指令前面加上一个'^'，如<code>require: '^ngModel'</code>。这样编译器会从包含当前元素的指令开始向上查找，并返回第一个匹配的控制器。</p>
+	<h4>使用ngModelController</h4>
+	<p>一旦拿到了ngModelController，就可以使用它的API给input元素设置验证方法，这是这类指令的通用做法，这种模式相当简洁明了，下表所示的函数和属性可供我们使用：</p>
+	<div class="browser">
+        <table class="browser">
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+			<tbody>
+				<tr>
+					<td>$parsers</td>
+					<td>input的值发生变化时会依次被调用的函数管线</td>
+				</tr>
+				<tr>
+					<td>$formatters</td>
+					<td>模型发生变化时会依次被调用的函数管线</td>
+				</tr>
+				<tr>
+					<td>$setValidity(validationKey, isValid)</td>
+					<td>用于设置模型验证结果的函数，参数中设定了验证错误标识</td>
+				</tr>
+				<tr>
+					<td>$valid</td>
+					<td>如果验证通过，则为true</td>
+				</tr>
+				<tr>
+					<td>$error</td>
+					<td>包含验证错误信息的对象</td>
+				</tr>
+			</tbody>
+        </table>
+    </div>
+	<p><code>$parsers</code>和<code>$formatters</code>中的函数都是接受一个输入值并返回一个输出值，可以在这些函数中调用验证逻辑<code>$setValidity()</code>。</p>
+</div>
+
