@@ -80,7 +80,7 @@ tags: [AngularJS]
 });
 </code></pre>
 	<p>工厂函数可以注入服务以便指令使用。指令定义是一个对象，它包含的字段告诉编译器该指令要做什么。其中一些字段是声明式的（如replace:true，这个字段告知编译器使用模板替换原有的元素）。而有些字段则是命令式的（如link:function(...)，这个字段为编译器提供了链接函数）。下表展示了指令定义中可以使用的所有字段：</p>
-		<div class="browser">
+	<div class="browser">
         <table class="browser">
             <thead>
                 <tr>
@@ -118,10 +118,6 @@ tags: [AngularJS]
 					<td>指向指令模板的URL地址</td>
 				</tr>
 				<tr>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
 					<td>replace</td>
 					<td>是否用模板内容替换现有的元素</td>
 				</tr>
@@ -148,4 +144,33 @@ tags: [AngularJS]
 			</tbody>
         </table>
     </div>
+</div>
+
+<div class="p-section">
+	<h3>使用指令修改按钮样式</h3>
+	<p>一个典型bootstrap中的按钮使用如下标签格式：</p>
+<pre><code class="html">&lt;button type="submit" class="btn btn-primary btn-large"&gt;click me&lt;/button&gt;
+</code></pre>	
+	<p>记住这些类名既费时又容易出错。我们可以定义一个指令，让按钮的使用变得既简单又实用。下面来看这个指令应该如何实现，代码如下：</p>
+<pre><code class="javascript">myModule.directive('button',function(){
+   return {
+      restrict : 'E',
+	  compile : function(element, attrs){
+	     element.addClass('btn');
+		 if(attrs.type="submit"){
+		    element.addClass('btn-primary');
+		 }
+		 if(attrs.size){
+		    element.addClass('btn-'+attrs.size);
+		 }
+	  }
+   };
+});
+</code></pre>
+	<p>我们的指令名称是<code>'button'</code>，它被限制只能以元素形式出现（restrict:'E'）。这表示该指令会在AngularJS编译器遇到任何按钮时被调用。实际上，我们是在给HTML button添加自定义的行为。该指令的剩余部分是一个编译函数，编译函数传递了一个element的参数，这个参数是一个jQuery对象，引用了指令对应的DOM元素，在本例中是一个Button元素。在编译函数中，我们只是简单的根据元素的属性值给元素追加CSS类。可以使用注入的属性参数来获取元素的属性值。在这个指令中，可以在编译函数中执行完所有的操作，完全没有使用链接函数，这是因为我们对元素的修改完全没有依赖于绑定在元素上的作用域数据。也可以将这些功能都挪到链接函数中，这样如果按钮出现在<code>ng-repeat</code>中，每次迭代都会调用addClass方法。有关循环指令中链接函数的执行次数问题，参见上文。</p>
+</div>
+
+<div class="p-section">
+	<h3>理解AngularJS的组件指令</h3>
+	<p>指令最强大的功能之一就是能让你创建自己的领域特定标签。换句话说，你能创建自定义的元素和属性，然后在你的应用所限定的特定领域内，为相应HTML标签赋予新的语义和行为。例如，类似于标准的HTML标签，你可以创建一个<code>&lt;user&gt;</code>元素来显示用户信息，或者创建一个<code>&lt;g-map&gt;</code>元素来与Google地图交互。这种创造的可能性是无穷无尽的，随之而来的好处是你的标签完全匹配你的开发领域。</p>
 </div>
