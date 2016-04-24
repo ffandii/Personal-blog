@@ -10,7 +10,7 @@ tags: [AngularJS]
 <div class="p-section">
 	<h3>什么是AngularJS指令</h3>
 	<p>指令应该是AngularJS最强大的功能。它们是粘合程序逻辑与HTML DOM的胶水。下图展示了指令如何将AngularJS的各层架构粘合在一起：</p>
-	<div class="image"><img src="../../../../../images/post/angularjs/directive1.png" width="763" height="531"/></div>
+	<div class="image"><img src="http://ffandii.github.io/Personal-blog/images/post/angularjs/directive1.png" width="763" height="531"/></div>
 	<p>指令通过扩展和自定义浏览器处理HTML的行为，从而使应用开发者或设计师可以将精力集中在应用的业务逻辑或视觉风格上。而且指令使用的是声明式风格，而不是通过低级的编程与DOM交互。这使得开发效率更高，代码更易于维护，重要的是开发将变得更加有趣。</p>
 	<p>AngularJS指令为HTML应用的标签添加了新的意义和行为。在指令内部，你可能会看到一些低级的或丑陋的代码来操纵DOM，这些代码一般使用jQuery或AngularJS's jqLite编写。如果在AngularJS之前加载jQuery，那么AngularJS会将jQuery作为DOM操作类库。否则AngularJS会假设你没有使用jQuery，它就会实现自己的简化版的jQuery，也就是常说的jqLite。指令的职责是修改DOM结构，并将作用域与DOM连接起来。这说明指令既要操作DOM，将作用域内的数据绑定到DOM，又要为DOM绑定作用域内的对应方法。</p>
 </div>
@@ -175,7 +175,7 @@ tags: [AngularJS]
 	<p>指令最强大的功能之一就是能让你创建自己的领域特定标签。换句话说，你能创建自定义的元素和属性，然后在你的应用所限定的特定领域内，为相应HTML标签赋予新的语义和行为。例如，类似于标准的HTML标签，你可以创建一个<code>&lt;user&gt;</code>元素来显示用户信息，或者创建一个<code>&lt;g-map&gt;</code>元素来与Google地图交互。这种创造的可能性是无穷无尽的，随之而来的好处是你的标签完全匹配你的开发领域。</p>
 	<h4>编写一个分页指令</h4>
 	<p>我们经常会笨拙地将大量的任务列表或待办事项一股脑地放在一页中显示。可以使用分页来将尝尝的列表分割成一组更易于管理的页面。在网页中使用分页模块是一种很通用的做法。Bootstrap CSS库提供了一个简洁美观的分页组件，如下图所示：</p>
-	<div class="image"><img src="../../../../../images/post/angularjs/pagination.png" width="569" height="78"/></div>
+	<div class="image"><img src="http://ffandii.github.io/Personal-blog/images/post/angularjs/pagination.png" width="569" height="78"/></div>
 	<p>接下来将会为这个分页模块编写一个可复用的组件指令，这样在使用时就无需考虑分页组件的具体细节，分页指令的标签代码将会是下面这样子的：</p>
 <pre><code class="html">&lt;pagination num-pages="tasks.pageCount" current-page="tasks.currentPage"&gt;
 &lt;/pagination&gt;
@@ -336,5 +336,31 @@ link: function(scope, element, attrs, ngModelController) {}
         </table>
     </div>
 	<p><code>$parsers</code>和<code>$formatters</code>中的函数都是接受一个输入值并返回一个输出值，可以在这些函数中调用验证逻辑<code>$setValidity()</code>。</p>
+	<h4>编写自定义验证指令</h4>
+<pre><code class="html">&lt;form name="testForm"&gt;
+   &lt;input name="testInput" ng-model="model.value" validate-equals="model.compareTo"&gt;
+&lt;/form&gt;
+</code></pre>
+	<p>指令的具体实现功能如下：</p>
+<pre><code class="javascript">myModule.directive('validateEquals', function(){
+   return {
+      require: 'ngModel',
+	  link: function(scope, element, attrs, ngModelCtrl){
+	     function validateEquals(myValue){
+	        var valid = ( myValue === scope.$eval(attrs.validateEquals]) );
+			ngModelCtrl.$setValidity('equal', valid);
+			return valid?myValue:undefined;
+		 }
+		 
+		 ngModelCtrl.$formatters.push(validateEquals);
+		 ngModelCtrl.$parsers.push(validateEquals);
+		 
+		 scope.$watch(attrs.validateEquals, function(){
+		    ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);
+		 });
+	  }
+   };
+});
+</code></pre>	
 </div>
 
