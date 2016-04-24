@@ -173,4 +173,123 @@ tags: [AngularJS]
 <div class="p-section">
 	<h3>理解AngularJS的组件指令</h3>
 	<p>指令最强大的功能之一就是能让你创建自己的领域特定标签。换句话说，你能创建自定义的元素和属性，然后在你的应用所限定的特定领域内，为相应HTML标签赋予新的语义和行为。例如，类似于标准的HTML标签，你可以创建一个<code>&lt;user&gt;</code>元素来显示用户信息，或者创建一个<code>&lt;g-map&gt;</code>元素来与Google地图交互。这种创造的可能性是无穷无尽的，随之而来的好处是你的标签完全匹配你的开发领域。</p>
+	<h4>编写一个分页指令</h4>
+	<p>我们经常会笨拙地将大量的任务列表或待办事项一股脑地放在一页中显示。可以使用分页来将尝尝的列表分割成一组更易于管理的页面。在网页中使用分页模块是一种很通用的做法。Bootstrap CSS库提供了一个简洁美观的分页组件，如下图所示：</p>
+	<div class="image"><img src="../../../../../images/post/angularjs/pagination.png" width="569" height="78"/></div>
+	<p>接下来将会为这个分页模块编写一个可复用的组件指令，这样在使用时就无需考虑分页组件的具体细节，分页指令的标签代码将会是下面这样子的：</p>
+<pre><code class="html">&lt;pagination num-pages="tasks.pageCount" current-page="tasks.currentPage"&gt;
+&lt;/pagination&gt;
+</code></pre>	
+	<h4>在指令中使用HTML模板</h4>
+	<p>分页组件需要我们生成一些HTML标签来替换指令标签。最简单的办法是为指令使用模板。分页组件的模板代码如下：</p>
+<pre><code class="html">&lt;ul&gt;
+   &lt;li ng-class="&#123;disabled: noPrevious()&#125;"&gt;
+      &lt;a ng-click="selectPrevious"&gt;Previous&lt;/a&gt;
+   &lt;/li&gt;
+   &lt;li ng-repeat="page in pages" ng-class="&#123;active: isActive(page)&#125;"&gt;
+		&lt;a ng-click="selectPage(page)"&gt;&#123;&#123;page&#125;&#125;&lt;/a&gt;
+   &lt;/li&gt;
+   &lt;li ng-class="&#123;disabled: noNext()&#125;"&gt;
+      &lt;a ng-click="selectNext()"&gt;Next&lt;/a&gt;
+   &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>	
+	<p>该模板使用了一个名为pages的数组和一些辅助函数，如<code>selectPage()</code>和<code>noNext()</code>。这些数组和辅助函数是分页组件在内部实现时需要的。它们要被放置在一个作用域内以便模板可以接收到这些内容，但它们不应该在某个具体分页组件的作用域内出现，要做到这点，可以要求编译函数为模板创建一个独立的作用域。</p>
+</div>
+
+<div class="p-section">
+	<h3>从父作用域中隔离指令</h3>
+	<p>我们无法在指令的具体使用场景中知晓作用域会包含什么，因此，提供具有良好开发接口的指令是一种很好的做法，这样可以保证指令不依赖于具体使用场景的作用域，也不会被作用域的任何属性所影响。</p>
+	<p>针对在指令和模板中使用的作用域，有三个设置选项，具体定义如下：</p>
+	<ul>
+	   <li>1. 复用具体组件使用位置所在的作用域。这是默认设置，对应的语句为scope: false。</li>
+	   <li>2. 创建一个子作用域，该作用域原型继承自组件具体使用位置所在的作用域。对应的语句为scope: true。</li>
+	   <li>3. 创建一个独立作用域，该作用域没有原型继承，所以与父作用域完全隔离。设置的方法是给scope属性传递一个对象，scope:{...}。</li>
+	</ul>
+	<p>要将组件模板与应用的其他完全解耦，这样他们就不会存在数据泄露的风险。所以会使用独立作用域。</p>
+	<p>现在的指令作用域从父作用域中完全隔离出来了，所以需要明确指定父作用域与独立作用域之间的数据映射关系。通过在指令元素的属性上使用AngularJS表达式来实现这一点。在分页组件中，num-pages和current-page属性担当此任。可以通过监视来使属性表达式与模板作用域中的数据同步。这种同步可以通过手工方式实现，也可以要求AngularJS来实现。定义元素属性与独立作用域之间的关系，共有三种接口：插入（@）、数据绑定（=）和表达式（&）。在指令中会以名值对的形式来定义这些接口：</p>
+<pre><code class="javascript">scope : {
+   isolated1 : '@attribute1',
+   isolated2 : '=attribute2',
+   isolated3 : '&attribute3'
+}
+</code></pre>	
+	<h4>使用@插入属性</h4>
+	<p>@表示AngularJS会将特定属性的值插入作用域，当模板属性值发生变化时，也会同步更新独立作用域中对应的属性。属性插入与手动<code>$observe</code>属性效果相同:</p>
+<pre><code class="javascript">attrs.$observe('attribute1', function(value){
+   isolatedScope.isolated1 = value;
+});
+attrs.$$observers['attribute1'].$$scope = parentScope;
+</code></pre>
+	<h4>使用=绑定数据</h4>
+	<p>等号（=）表示AngularJS会保持属性表达式与独立作用域属性值双向同步。这是一种双向数据绑定，允许对象和值在组件内外直接映射。由于这种接口支持双向数据绑定，所以DOM属性中的表达式应该是可以赋值的（就是引用作用域上的字段或对象），而不是随意计算出来的表达式。使用等号的双向数据绑定有点类似于手动设置两种<code>$watch</code>的方式：</p>
+<pre><code class="javascript">var parentGet = $parse(attrs['attribute2']);
+var parentSet = parentGet.assign;
+parentScope.$watch(parentGet, function(value){
+   isolatedScope.isolated2 = value;
+});
+isolatedScope.$watch('isolated2', function(value){
+   parentSet(parentScope, value);
+});
+</code></pre>
+	<p>当然，AngularJS中真正的实现要比上述代码复杂得多，从而可以保证两个作用域之间的稳定性。</p>
+	<h4>使用&提供一个回调表达式</h4>
+	<p>&符号表达式表示属性中的表达式会被当成作用域中的一个函数，当属性被调用时，该表达式函数就会执行，这个借口可以用来创建组件的回调函数。这种绑定方式如同<code>$parse</code>属性中的表达式，而且在独立作用域中暴露了表达式函数：</p>
+<pre><code class="javascript">parentGet = $parse(attrs['attribute3']);
+scope.isolated3 = function(locals){
+   return parentGet(parentScope, locals);
+};
+</code></pre>
+</div>
+
+<div class="p-section">
+	<h3>实现分页组件</h3>
+	<p>分页组件的指令定义如下：</p>
+<pre><code class="javascript">myModule.directive('pagination',function(){
+   return {
+      restrict : 'E',
+	  scope : {
+	     numPages : '=',
+		 currentPage : '='
+	  },
+	  template : '...',
+	  replace : true
+   };
+});
+</code></pre>	
+	<p>指令被限制以元素形式出现。组件使用独立作用域，包含<code>numPages</code>和<code>currentPages</code>两个字段，分别绑定在<code>num-pages</code>和<code>current-page</code>属性上，指令会被之前的模板直接替换掉。</p>
+<pre><code class="javascript">link : function(scope){
+   scope.$watch('numPages',function(value){
+      scope.pages = [];
+	  for(var i=1;i<=value;i++){
+	     scope.pages.push(i);
+	  }
+	  if(scope.currentPage>value){
+	     scope.selectPage(value);
+	  }
+   });
+   
+   //...
+   
+   scope.isActive = function(page){
+      return scope.currentPage === page;
+   };
+   
+   scope.selectPage = function(page){
+      if(!scope.isActive(page)){
+	     scope.currentPage = page;
+	  }
+   };
+   
+   //...
+   
+   scope.selectNext = function(){
+      if(!scope.noNext()){
+	     scope.selectPage(scope.currentPage+1);
+	  }
+   };
+   
+};
+</code></pre>
+	<p></p>链接函数在<code>numPages</code>属性上添加了一个监视，还为独立作用域增添了各种在指令模板中使用的辅助函数。
 </div>
