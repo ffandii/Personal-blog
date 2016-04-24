@@ -71,3 +71,81 @@ tags: [AngularJS]
         </table>
     </div>
 </div>
+
+<div class="p-section">
+	<h3>定义指令</h3>
+	<p>每个指令都必须注册在模块（module）上。定义指令的方法是在模块上调用<code>directive()</code>方法，调用方法时需要传递指令的标准名称和一个返回指令定义的工厂函数。</p>
+<pre><code class="javascript">angular.module('app',[]).directive('myDir',function(){
+   return myDirectionDefinition;
+});
+</code></pre>
+	<p>工厂函数可以注入服务以便指令使用。指令定义是一个对象，它包含的字段告诉编译器该指令要做什么。其中一些字段是声明式的（如replace:true，这个字段告知编译器使用模板替换原有的元素）。而有些字段则是命令式的（如link:function(...)，这个字段为编译器提供了链接函数）。下表展示了指令定义中可以使用的所有字段：</p>
+		<div class="browser">
+        <table class="browser">
+            <thead>
+                <tr>
+                    <th>字段</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+			<tbody>
+				<tr>
+					<td>name</td>
+					<td>指令名称</td>
+				</tr>
+				<tr>
+					<td>restrict</td>
+					<td>指令可以使用哪种标签形式</td>
+				</tr>
+				<tr>
+					<td>priority</td>
+					<td>提示编译器该指令执行的顺序（优先级）</td>
+				</tr>
+				<tr>
+					<td>terminal</td>
+					<td>编译器是否在该指令之后继续编译其他指令</td>
+				</tr>
+				<tr>
+					<td>link</td>
+					<td>定义该指令与作用域连接起来的链接函数</td>
+				</tr>
+				<tr>
+					<td>template</td>
+					<td>用于生成指令标签的字符串</td>
+				</tr>
+				<tr>
+					<td>templateUrl</td>
+					<td>指向指令模板的URL地址</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>replace</td>
+					<td>是否用模板内容替换现有的元素</td>
+				</tr>
+				<tr>
+					<td>transclude</td>
+					<td>是否为指令模板和编译函数提供指令元素中的内容</td>
+				</tr>
+				<tr>
+					<td>scope</td>
+					<td>是为指令创建一个子作用域还是一个独立作用域</td>
+				</tr>
+				<tr>
+					<td>controller</td>
+					<td>一个作为指令控制器的函数</td>
+				</tr>
+				<tr>
+					<td>require</td>
+					<td>设置要注入到当前指令链接函数中的其他指令的控制器</td>
+				</tr>
+				<tr>
+					<td>compile</td>
+					<td>定义编译函数，编译函数会操作原始DOM，而且会在没有提供link设置的情况下创建链接函数。</td>
+				</tr>
+			</tbody>
+        </table>
+    </div>
+</div>
