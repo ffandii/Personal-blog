@@ -2,7 +2,7 @@
 layout: post
 title: "理解AngularJS的内部运作机制2"
 description: "当AngularJS首次向公众发布时，就有许多关于它的模型变化监控算法的“阴谋论”。其中最被津津乐道的一种是，怀疑AngularJS使用了某种轮询机制。这种机制可能是每隔一小段时间就去检查模型值的变化，如果发现变化，就重绘DOM，所有这些猜测都是错误的。"
-category: AngularJS
+category: MEAN框架
 tags: [AngularJS]
 ---
 {% include JB/setup %}
@@ -63,10 +63,43 @@ element.bind('blur', function(){
 	<p>如果模型上的任何一个监视器都检测不到任何变化，AngularJS就会认为该模型是稳定的（此时就可以进行UI渲染工作了）。只要有一个监视变化，就足以使整个<code>$digest</code>变脏，迫使AngularJS进入下一轮循环。AngularJS会持续执行<code>$digest</code>循环，反复运算所有作用域上的所有监视，直到没有任何变化为止。连续几轮<code>$digest</code>循环是很有必要的，因为模型监视回调会有一些副作用。如果只是简单的设置一个回调，当监视的模型值变化时执行，那就可能改变我们已经运算过且认为稳定的模型。</p>
 	<h4>不稳定的模型</h4>
 	<p>有些情况下，<code>$digest</code>执行两次循环也不足以确定模型的稳定性。更糟糕的是，有可能永远无法确定模型稳定性的情况！我们来看下面的例子：</p>
-<pre><code class="html"><span>Random value: {{random()}}</span>
+<pre><code class="html">&lt;span&gt;Random value: &#123;&#123;random()&#125;&#125;&lt;/span&gt;
 </code></pre>
 	<p><code>random()</code>函数定义如下：</p>
 <pre><code class="javascript">$scope.random = Math.random;
 </code></pre>
+	<p>监视表达式等于<code>Math.random()</code>，这样会导致每次<code>$digest</code>循环运算所得的值都不一样。这表示每次检查的结果都是脏的，需要启动新一轮检查。这会导致一遍又一遍的循环。直到AngularJS认为这个模型是不稳定的，然后强制跳出循环。AngularJS默认最多执行10次循环，之后就会声明该模型是不稳定的，然后中断循环。在中断循环之后，AngularJS会抛出一个错误（使用<code>$exceptionHandler</code>服务来处理，该服务用来在控制台记录错误）。抛出的错误中会包含5个最新的不稳定的监视信息。大多数情况下只会有一个不稳定的监视模型，所以很容易找到罪魁祸首。</p>
+	<p>在<code>$digest</code>循环被终止之后，javascript线程会脱离AngularJS世界，此时没有什么能够阻止浏览器对渲染的向往，之后用户会看到使用<code>$digest</code>循环最后一次运行所得模型渲染的页面。</p>
+</div>
+
+<div class="p-section">
+	<h3>$digest循环和作用域的层级</h3>
+	<p>每次<code>$digest</code>循环都会从<code>$rootScope</code>开始，重新计算所有作用域上的所有监视表达式。这一点看上去有点违反直觉，有些人可能会说只要重新计算指定作用域及其子作用域上的表达式就足矣。不幸的是，这样会导致UI和模型不同步。原因是子作用域上的变化可能会影响父作用域上的变量。请看下面的例子，包含两个作用域（一个是<code>$rootScope</code>，另一个是<code>ng-controller</code>指令创建的）：</p>
+<pre><code class="html">&lt;body ng-app ng-init='user= &#123;name:'Superhero&#125;'&gt;
+   Name in parent: &#123;&#123;user.name&#125;&#125;
+   &lt;div ng-controller="ChildCtrl"&gt;
+      Name in child: &#123;&#123;user.name&#125;&#125;
+	  &lt;input ng-model="user.name"&gt;
+   &lt;/div&gt;
+</body>
+</code></pre>
+	<p>模型<code>user.name</code>的变化是被子作用域<code>nf-controller</code>触发的，但是这个变化也改变了$rootScope上的值。这种情况迫使AngularJS从<code>$rootScope</code>开始采用<strong>深度优先遍历</strong>运算所有的监视表达式。如果AngularJS只是运算某个作用域上的监视表达式，那么一旦模型变化，应用中就存在模型和实际显示不同步的情形，比如我们的这个例子，显示也就不会同步了。在每次<code>$digest</code>循环中，AnularJS都需要运算作用域上的所有监视表达式，以深度优先遍历所有作用域。</p>
+	<h4>整合</h4>
+	<p>总结之前学习的AngularJS的内部运作机制，通过讲解一个<code>input</code>元素将模型变化如何传播给DOM的例子来说明：</p>
+<pre><code class="html">&lt;input ng-mode="name"/&gt;
+&#123;&#123;name&#125;&#125;
+</code></pre>
+	<p>上面的代码产生的结果是在<code>$scope</code>上注册了两个监视器，每一个都在监视模型上的<code>name</code>变量，在初始加载之后，页面上没有任何变化，浏览器守株待兔，时刻等待任何事件的发生。当用户开始在输入框中输入值的时候，整个机制才会开始运作起来：</p>
+	<ul>
+	   <li>1. DOM中的<code>input</code>事件被触发，浏览器进入到javascript环境</li>
+	   <li>2. 由input指令注册的DOM事件处理程序开始执行，该处理函数会更新模型的值，然后在作用域上调用<code>$scope.$apply</code>方法</li>
+	   <li>3. javascript执行进入到AngularJS世界，<code>$digest</code>循环开始启动</li>
+	   <li>4. 第一次<code>$digest</code>循环发现有一个监视表达式（<code>&#123;&#123;name&#125;&#125;</code>插值表达式注册的对象）是脏的，此时需要再来一次循环</li>
+	   <li>5. 一旦检查出一个模型的变化，就会触发一个$watch函数的回调。该函数会更新插值表达式所在位置的</code>text</code>属性</li>
+	   <li>6. 第二次<code>$digest</code>循环重新运算了所有监视表达式，但这次没有发现任何变化，此时AngularJS宣布模型趋于稳定，然后退出<code>$digest</code>循环</li>
+	   <li>7. javascript执行环境处理其他非AngularJS代码，大多数情况下没有这类代码，之后浏览器退出javascript执行环境</li>
+	   <li>8. UI线程切换到DOM渲染环境，浏览器重绘那个text属性发生变化的DOM节点</li>
+	   <li>9. 在重绘完成之后，浏览器回到守株待兔阶段</li>
+	</ul>
 </div>
 
