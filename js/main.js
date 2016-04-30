@@ -156,15 +156,15 @@ $(document).ready(function(){
 
     function showCategory(text) {
         var link = "", value;
+        if(text == 'Javascript'){
+            text = 'javascript';
+        } else if(text == 'CSS'){
+            text = 'css';
+        } else if(text == 'MEAN框架') {
+            text = 'mean框架';
+        }
         for (var i = 0, len = json.length; i < len; i++) {
             word = json[i]["c"];
-            if(word == 'Javascript'){
-                word = 'javascript';
-            } else if(word == 'CSS'){
-                word = 'css';
-            } else if(word == 'MEAN框架') {
-                word = 'mean框架';
-            }
             if (text == word) {
                 var html = "", num = json[i]["s"]; sum = num;
                 for (var j = spaceNum*lastNum; j < num && j < spaceNum*(lastNum+1); j++) {
