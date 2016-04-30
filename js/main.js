@@ -145,8 +145,8 @@ $(document).ready(function(){
 });
 
 //--------------------侧边栏搜索功能的实现，利用ajax--------------------//
-var json,lastText="",spaceNum= 6, lastNum, clicked, sum, word;
 $(document).ready(function(){
+    var json,lastText="",spaceNum= 6, lastNum, clicked, sum, word;
     $.ajax({
         url: 'http://ffandii.github.io/Personal-blog/search.txt',
         success: function(data) {
@@ -158,12 +158,12 @@ $(document).ready(function(){
         var link = "", value;
         for (var i = 0, len = json.length; i < len; i++) {
             word = json[i]["c"];
-            if(word == 'javascript'){
-                word = 'Javascript';
-            } else if(word == 'css'){
-                word = 'CSS';
-            } else if(word == 'mean框架') {
-                word = 'MEAN框架';
+            if(word == 'Javascript'){
+                word = 'javascript';
+            } else if(word == 'CSS'){
+                word = 'css';
+            } else if(word == 'MEAN框架') {
+                word = 'mean框架';
             }
             if (text == word) {
                 var html = "", num = json[i]["s"]; sum = num;
