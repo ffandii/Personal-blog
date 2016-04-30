@@ -1,5 +1,24 @@
 //$('div.hid-ul').hide();
 
+function fenyeHandler(event){
+    if(!$(this).parent().hasClass("active")){
+        if(event.type=='mouseenter'){
+            $(this).stop().animate({
+                backgroundColor: "#b47160"
+            },{
+                duration: 400
+            });
+        }
+        else {
+            $(this).stop().animate({
+                backgroundColor: "#60acb4"
+            },{
+                duration: 400
+            });
+        }
+    }
+}
+
 $(document).ready(function(){
     var delay={ "show": 800, "hide": 800 };
     $('[data-toggle="tooltip"]').tooltip(delay); //导航栏的提示框
@@ -92,24 +111,8 @@ $(document).ready(function(){
     });
 
 //------------------------------分页区的颜色变化----------------------//
-    $('div.fenye div').on('mouseenter mouseleave',function(event) {
-        if(!$(this).parent().hasClass("active")){
-            if(event.type=='mouseenter'){
-                $(this).stop().animate({
-                    backgroundColor: "#b47160"
-                },{
-                    duration: 400
-                });
-            }
-            else {
-                $(this).stop().animate({
-                    backgroundColor: "#60acb4"
-                },{
-                    duration: 400
-                });
-            }
-        }
-    });
+
+    $('div.fenye div').on('mouseenter mouseleave',fenyeHandler);
 
 //----------------------侧边栏响应滚动条的滑动效果----------------//
     var divTop=60;
@@ -220,6 +223,7 @@ $(document).ready(function(){
 
                 clicked=true;
                 $("div.fenye").html(link);  //更新分页信息
+                $('div.fenye div').on('mouseenter mouseleave',fenyeHandler);
                 return html;
             }
         }
