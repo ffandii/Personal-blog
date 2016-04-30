@@ -156,12 +156,12 @@ $(document).ready(function(){
 
     function showCategory(text) {
         var link = "", value;
-        if(text == 'Javascript'){
-            text = 'javascript';
-        } else if(text == 'CSS'){
-            text = 'css';
-        } else if(text == 'MEAN框架') {
-            text = 'mean框架';
+        if(text == 'javascript'){
+            text = 'Javascript';
+        } else if(text == 'css'){
+            text = 'CSS';
+        } else if(text == 'mean框架') {
+            text = 'MEAN框架';
         }
         for (var i = 0, len = json.length; i < len; i++) {
             word = json[i]["c"];
