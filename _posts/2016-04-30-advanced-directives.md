@@ -97,5 +97,47 @@ myModule.controller('MyDirectiveController',function($scope){
 	<h4>为指令控制器注入特殊依赖</h4>
 	<p>和控制器一样，AngularJS为指令控制器注入了依赖关系。所有控制器都被注入了<code>$scope</code>，你可以定义其他需要被注入的服务，如<code>$timeout</code>或<code>$rootScope</code>。除了上面这些，指令控制器还可以注入以下三个特殊的服务：</p>
 	<ul>
+		<li>1. <code>$element</code>：对指令DOM元素的引用，是一个被jQLite或jQuery包裹的对象。</li>
+		<li>2. <code>$attrs</code>：出现在指令DOM元素上的属性列表。</li>
+		<li>3. <code>$transclude</code>：绑定在当前作用域上的嵌入函数。</li>
 	</ul>
+	<h4>创建一个基于指令控制器的分页指令</h4>
+	<p>指令控制器和链接函数在功能上有很大的重叠，我们经常用控制器来替代链接函数，接下来编写一个分页指令，这次我们使用指令控制器替代链接函数，代码如下：</p>
+<pre><code class="javascript">myModule.directive('pagination',function(){
+   return {
+      restrict: 'E',
+	  scope: { numPages: '=', currentPage: '=', onSelectPage: '&' },
+	  templateUrl: 'template/pagination.html',
+	  controller: ['$scope','$element','$attrs',function($scope, $element, $attrs){
+	     $scope.$watch('numPages',function(value){
+		    $scope.pages = [];
+			for(var i=1;i<=value;i++){
+			   $scope.$pages.push(i);
+			}
+			if($scope.currentPage>value){
+			   $scope.selectPage(value);
+			}
+			$scope.noPrevious = function(){
+			   return $scope.currentPage === 1;
+			};
+			//...
+		 })
+	  }]
+	  //...
+   };
+});
+</code></pre>
+	<p>在这个例子中，使用链接函数和使用指令控制器的唯一区别是，链接函数载入了scope, element, attrs和controller的参数，而指令控制器则需要自己来载入。</p>
+	<h4>理解指令控制器和链接函数的区别</h4>
+	<p>当你使用指令控制器或者链接函数时，理解它们的区别很有帮助。</p>
+	<p>首先，指令控制器必须使用以来注入来指定他所需要的服务，而链接函数则永远被传入四个相同的参数。</p>
+	<p>指令控制器和链接函数是在编译过程中的不同时间被调用的，如果在一个元素上包含多条指令，那么编译顺序如下：</p>
+	<ul>
+		<li>1. 按需创建作用域。</li>
+		<li>2. 实例化每个指令的指令控制器。</li>
+		<li>3. 调用每个指令的预链接函数。</li>
+		<li>4. 所有子元素完成链接。</li>
+		<li>5. 调用每个指令的链接函数。</li>
+	</ul>
+	<p>这意味着一个指令控制器被实例化时，该指令的指令元素和子元素尚未完全链接，但当链接函数被调用时，该元素的所有指令控制器都已经完成了实例化。这也就是指令控制器为什么可以被当成参数传递给链接函数的原因。</p>
 </div>
