@@ -248,22 +248,24 @@ $(document).ready(function(){
     }
 
     $('div.fenye').on('click',function(event){
-        event.preventDefault();
-        var target = event.target;
         if(clicked===true){
-            var str = $(target,'div').text();
-            if(str === '上一页'){
-                lastNum--;
-            } else if(str === '下一页'){
-                lastNum++;
-            } else {
-                var num = parseInt(str);
-                if(lastNum+1 === num ){
+            event.preventDefault();
+            var target = event.target;
+            if(clicked===true){
+                var str = $(target,'div').text();
+                if(str === '上一页'){
+                    lastNum--;
+                } else if(str === '下一页'){
+                    lastNum++;
                 } else {
-                    lastNum = num-1;
+                    var num = parseInt(str);
+                    if(lastNum+1 === num ){
+                    } else {
+                        lastNum = num-1;
+                    }
                 }
+                filterPost(lastText);
             }
-            filterPost(lastText);
         }
     });
 
