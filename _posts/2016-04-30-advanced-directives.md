@@ -54,4 +54,5 @@ tags: [AngularJS]
    &lt;alert type="'info'"&gt;Look at {{type}}&lt;/alert&gt;
 &lt;/div&gt;
 </code></pre>	
+	<p><code>&lt;div&gt;&#123;&#123;type&#125;&#125;&lt;/div&gt;</code>元素没有在自己上面直接定义作用域，相反，它悄悄的绑定到了<code>$rootScope</code>上，因为它是<code>ng-app</code>元素的子元素。<code>ng-app</code>元素定义了<code>$rootScope</code>。在<code>alert</code>元素上面有一个属性：<code>type="'info'"</code>。该属性被映射到了模板元素作用域的<code>type</code>属性上。一旦<code>alert</code>指令被编译，该元素就会被它的模板替换，编译后DOM和作用域如下：</p>
 </div>
