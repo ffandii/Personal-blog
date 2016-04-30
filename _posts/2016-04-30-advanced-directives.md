@@ -58,16 +58,44 @@ tags: [AngularJS]
 <pre><code class="html">&lt;!-- 定义$rootScope --&gt;
 &lt;div ng-app ng-init=" type='success'"&gt;
    &lt;!-- 绑定$rootScope --&gt;
-   <div>&#123;&#123;type&#125;&#125;</div>
+   &lt;div&gt;&#123;&#123;type&#125;&#125;&lt;/div&gt;
    &lt;!-- 定义独立作用域 --&gt;
-   <div class="alert-&#123;&#123;type&#125;&#125;">
+   &lt;div class="alert-&#123;&#123;type&#125;&#125;"&gt;
       &lt;!-- 绑定独立作用域 --&gt;
 	  &lt;button&gt;...&lt;/button&gt;
 	  &lt;div ng-transclude&gt;
 	     &lt;!-- 定义新的嵌入作用域 --&gt;
 		 &lt;span&gt;Look at &#123;&#123;type&#125;&#125;&lt;/span&gt;
 	  &lt;/div&gt;
-   </div>
+   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+	<p>嵌入作用域是一个继承自<code>$rootScope</code>的子作用域。当元素被嵌入模板中的某个位置时，它们会带着之前绑定在它们身上的原始作用域一起迁移。更准确的说法是，嵌入元素会绑定一个新的作用域，而该作用域原型继承自该元素当初诞生地的作用域。</p>
+</div>
+
+<div class="p-section">
+	<h3>理解指令控制器</h3>
+	<p>AngularJS中的指令控制器是一个附属于DOM元素的对象，主要用于初始化工作及为元素所在的作用域添加行为。指令控制器是控制器的一种特殊形式，它由某个指令定义出来，每当指令在DOM中出现，该控制器就会实例化一次。指令控制器的职责是负责初始化工作并为指令（而不是作用域）提供交互行为。可以使用指令定义对象中的<code>controller</code>对象定义一个指令控制器。<code>controller</code>属性的值可以是一个字符串，该字符串时已经在模块上定义好的控制器的名称，代码如下：</p>
+<pre><code class="javascript">myModule.directive('myDirective',function(){
+   return {
+      controller: 'myDirectiveController'
+   };
+});
+myModule.controller('MyDirectiveController',function($scope){
+   //...
+});
+</code></pre>
+	<p><code>controller</code>属性也可以是一个用来实例化控制器的构造函数，代码如下：</p>
+<pre><code class="javascript">myModule.directive('myDirective',function(){
+   return {
+      controller: function($scope,$element,$attrs){
+	     //...
+	  }
+   };
+});
+</code></pre>
+	<h4>为指令控制器注入特殊依赖</h4>
+	<p>和控制器一样，AngularJS为指令控制器注入了依赖关系。所有控制器都被注入了<code>$scope</code>，你可以定义其他需要被注入的服务，如<code>$timeout</code>或<code>$rootScope</code>。除了上面这些，指令控制器还可以注入以下三个特殊的服务：</p>
+	<ul>
+	</ul>
 </div>
