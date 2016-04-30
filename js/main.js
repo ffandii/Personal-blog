@@ -183,7 +183,7 @@ $(document).ready(function(){
                     html += '</div></div><div class="post-description">';
                     html += json[i]["a"][j][4];
                     html += '</div> </div>';
-                    if (j < num - 1) {
+                    if (j < num - 1&&(j<spaceNum*(lastNum+1)-1)) {
                         html += '<div class="gap-line"></div>';
                     }
                 }
