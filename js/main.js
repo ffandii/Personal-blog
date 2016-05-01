@@ -231,7 +231,9 @@ $(document).ready(function(){
     }
 
 
+    var htmlBody = $('html,body');
     function outlineAnimation(element, html){
+        htmlBody.css({scrollTop: '0px'});
         element.slideUp(150, function () {
             $(this).html(html).hide().slideDown(400, function () {
                 $('div.blog-outline div.post-outline div.post-header a').each(function () {
